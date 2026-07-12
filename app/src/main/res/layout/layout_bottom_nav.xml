@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Floating glass dock. Each item is a full-height weight-1 column (touch target ≥48dp)
+     containing an MD3 icon-only pill indicator with the label beneath it. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomNav"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_nav_height"
+    android:background="@drawable/bg_bottom_nav_bar"
+    android:baselineAligned="false"
+    android:elevation="@dimen/elevation_dock"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/spacing_8">
+
+    <FrameLayout
+        android:id="@+id/navHome"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/navHomeIndicator"
+                android:layout_width="56dp"
+                android:layout_height="32dp">
+
+                <ImageView
+                    android:id="@+id/navHomeIcon"
+                    android:layout_width="@dimen/nav_icon"
+                    android:layout_height="@dimen/nav_icon"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/nav_home"
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/text_primary" />
+            </FrameLayout>
+
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:id="@+id/navHomeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/nav_home"
+                android:textAppearance="@style/TextAppearance.DriveTrack.NavLabel"
+                app:lineHeightSp="16" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/navVehicles"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/navVehiclesIndicator"
+                android:layout_width="56dp"
+                android:layout_height="32dp">
+
+                <ImageView
+                    android:id="@+id/navVehiclesIcon"
+                    android:layout_width="@dimen/nav_icon"
+                    android:layout_height="@dimen/nav_icon"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/nav_vehicles"
+                    android:src="@drawable/ic_car"
+                    app:tint="@color/text_primary" />
+            </FrameLayout>
+
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:id="@+id/navVehiclesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/nav_vehicles"
+                android:textAppearance="@style/TextAppearance.DriveTrack.NavLabel"
+                app:lineHeightSp="16" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/navReports"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/navReportsIndicator"
+                android:layout_width="56dp"
+                android:layout_height="32dp">
+
+                <ImageView
+                    android:id="@+id/navReportsIcon"
+                    android:layout_width="@dimen/nav_icon"
+                    android:layout_height="@dimen/nav_icon"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/nav_reports"
+                    android:src="@drawable/ic_bar_chart"
+                    app:tint="@color/text_primary" />
+            </FrameLayout>
+
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:id="@+id/navReportsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/nav_reports"
+                android:textAppearance="@style/TextAppearance.DriveTrack.NavLabel"
+                app:lineHeightSp="16" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/navProfile"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/navProfileIndicator"
+                android:layout_width="56dp"
+                android:layout_height="32dp">
+
+                <ImageView
+                    android:id="@+id/navProfileIcon"
+                    android:layout_width="@dimen/nav_icon"
+                    android:layout_height="@dimen/nav_icon"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/nav_profile"
+                    android:src="@drawable/ic_user"
+                    app:tint="@color/text_primary" />
+            </FrameLayout>
+
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:id="@+id/navProfileLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_4"
+                android:text="@string/nav_profile"
+                android:textAppearance="@style/TextAppearance.DriveTrack.NavLabel"
+                app:lineHeightSp="16" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

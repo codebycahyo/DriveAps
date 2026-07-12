@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DriveTrack</string>
+
+    <!-- Common -->
+    <string name="cd_logo">Logo DriveTrack</string>
+    <string name="cd_icon_lock">Ikon gembok</string>
+
+    <!-- Login screen -->
+    <string name="login_brand_title">DriveTrack</string>
+    <string name="login_brand_subtitle">Kelola kendaraan Anda dengan cerdas.</string>
+    <string name="login_heading">Selamat Datang Kembali</string>
+    <string name="login_subheading">Silakan masuk ke akun Anda</string>
+    <string name="login_label_email">EMAIL</string>
+    <string name="login_hint_email">nama@email.com</string>
+    <string name="login_label_password">KATA SANDI</string>
+    <string name="login_forgot_password">Lupa Kata Sandi?</string>
+    <string name="login_hint_password">••••••••</string>
+    <string name="login_cta">Masuk</string>
+    <string name="login_divider_social">ATAU MASUK DENGAN</string>
+    <string name="login_social_google">Google</string>
+    <string name="login_social_facebook">Facebook</string>
+    <string name="login_footer_prefix">Belum punya akun? </string>
+    <string name="login_footer_link">Daftar</string>
+    <string name="login_trust_banner">DATA TERENKRIPSI DAN AMAN</string>
+
+    <!-- Onboarding - Selamat Datang -->
+    <string name="onboarding_welcome_tag">Pantau Kendaraan Anda</string>
+    <string name="onboarding_welcome_headline">Selamat Datang di\nKendaraanku</string>
+    <string name="onboarding_welcome_body">Solusi cerdas untuk mencatat pengeluaran,\nservis, dan dokumen kendaraan Anda secara\noffline.</string>
+    <string name="onboarding_cta_next">Lanjut</string>
+    <string name="cd_hero_illustration">Ilustrasi kendaraan</string>
+
+    <!-- Onboarding - Scan Struk -->
+    <string name="onboarding_scan_headline">Catat Cepat dengan\nOCR</string>
+    <string name="onboarding_scan_body">Cukup foto struk BBM atau servis, biarkan\nteknologi AI kami mencatat nominal dan\ntanggalnya secara otomatis.</string>
+    <string name="cd_icon_camera">Ikon kamera</string>
+    <string name="cd_icon_receipt_amount">Ikon nominal terdeteksi</string>
+
+    <!-- Onboarding - Pengingat Pintar -->
+    <string name="onboarding_reminder_headline">Jangan Lewatkan Jatuh\nTempo</string>
+    <string name="onboarding_reminder_body">Dapatkan pengingat otomatis untuk pajak\nSTNK, asuransi, dan jadwal servis rutin agar\nkendaraan tetap prima.</string>
+    <string name="onboarding_cta_start">Mulai Sekarang</string>
+
+    <!-- Register screen -->
+    <string name="register_brand_subtitle">Kelola aset kendaraan Anda dengan cerdas</string>
+    <string name="register_heading">Buat Akun Baru</string>
+    <string name="register_label_name">Nama Lengkap</string>
+    <string name="register_hint_name">John Doe</string>
+    <string name="register_label_email">Email</string>
+    <string name="register_hint_email">contoh@email.com</string>
+    <string name="register_label_password">Kata Sandi</string>
+    <string name="register_label_confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="register_terms">Saya setuju dengan Syarat &amp; Ketentuan</string>
+    <string name="register_cta">Daftar Sekarang</string>
+    <string name="register_divider_social">ATAU DAFTAR DENGAN</string>
+    <string name="register_footer_link">Sudah punya akun? Masuk</string>
+    <string name="cd_checkbox_terms">Centang untuk menyetujui syarat dan ketentuan</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_vehicles">Kendaraan</string>
+    <string name="nav_reports">Laporan</string>
+    <string name="nav_profile">Profil</string>
+
+    <!-- Home Dashboard -->
+    <string name="cd_menu">Buka menu</string>
+    <string name="cd_notifications">Notifikasi</string>
+    <string name="home_expense_label">Total Pengeluaran Bulan Ini</string>
+    <string name="home_expense_amount">Rp 1.250.000</string>
+    <string name="home_vehicle_name">Toyota Avanza • B 1234 ABC</string>
+    <string name="home_reminder_badge">7 Hari lagi: Pajak STNK</string>
+    <string name="quick_action_fuel">Isi BBM</string>
+    <string name="quick_action_service">Servis</string>
+    <string name="quick_action_scan">Scan\nStruk</string>
+    <string name="quick_action_document">Dokumen</string>
+    <string name="home_efficiency_title">Efisiensi BBM</string>
+    <string name="home_efficiency_value">12.4</string>
+    <string name="home_efficiency_unit">km/L</string>
+    <string name="home_efficiency_badge">Bulan ini stabil</string>
+    <string name="home_activity_title">Aktivitas Terbaru</string>
+    <string name="see_all">Lihat Semua</string>
+    <string name="home_reminders_title">Pengingat Mendatang</string>
+
+    <!-- Add Vehicle -->
+    <string name="add_vehicle_title">Tambah Kendaraan</string>
+    <string name="step_basic_info">Info Dasar</string>
+    <string name="step_detail">Detail</string>
+    <string name="step_done">Selesai</string>
+    <string name="add_vehicle_photo_label">Foto Kendaraan</string>
+    <string name="add_vehicle_photo_hint">Tap untuk upload foto</string>
+    <string name="add_vehicle_type_label">Jenis Kendaraan</string>
+    <string name="vehicle_type_car">Mobil</string>
+    <string name="vehicle_type_motorcycle">Motor</string>
+    <string name="add_vehicle_label_brand">Merek</string>
+    <string name="add_vehicle_hint_brand">Contoh: Honda, Toyota</string>
+    <string name="add_vehicle_label_model">Model</string>
+    <string name="add_vehicle_hint_model">Contoh: Vario 150, Avanza Veloz</string>
+    <string name="add_vehicle_label_plate">Plat Nomor</string>
+    <string name="add_vehicle_hint_plate">B 1234 ABC</string>
+    <string name="add_vehicle_label_year">Tahun</string>
+    <string name="add_vehicle_hint_year">Pilih Tahun</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_next">Lanjut</string>
+    <string name="cd_back">Kembali</string>
+
+    <!-- Vehicle Detail -->
+    <string name="vehicle_detail_title">Detail Kendaraan</string>
+    <string name="cd_edit">Edit kendaraan</string>
+    <string name="cd_add">Tambah aktivitas</string>
+    <string name="vehicle_detail_plate">B 1234 ABC</string>
+    <string name="vehicle_detail_status_active">Aktif</string>
+    <string name="vehicle_detail_stat_fuel_label">Total BBM</string>
+    <string name="vehicle_detail_stat_fuel_value">50L</string>
+    <string name="vehicle_detail_stat_service_label">Total Servis</string>
+    <string name="vehicle_detail_stat_service_value">2</string>
+    <string name="vehicle_detail_stat_odometer_label">Odometer</string>
+    <string name="vehicle_detail_stat_odometer_value">12.500 km</string>
+    <string name="tab_all_activity">Semua Aktivitas</string>
+    <string name="tab_fuel">BBM</string>
+    <string name="tab_service">Servis</string>
+
+    <!-- Add Fuel Entry -->
+    <string name="add_fuel_title">Tambah BBM</string>
+    <string name="cd_close">Tutup</string>
+    <string name="add_fuel_label_liter">JUMLAH (LITER)</string>
+    <string name="add_fuel_hint_liter">0.00</string>
+    <string name="add_fuel_unit_liter">L</string>
+    <string name="add_fuel_label_price">HARGA / LITER</string>
+    <string name="add_fuel_hint_price">0</string>
+    <string name="add_fuel_prefix_currency">Rp</string>
+    <string name="add_fuel_total_label">Total Biaya</string>
+    <string name="add_fuel_total_value">Rp 0</string>
+    <string name="add_fuel_label_odometer">Odometer (km)</string>
+    <string name="add_fuel_hint_odometer">Misal: 45000</string>
+    <string name="add_fuel_label_station">SPBU / Pom Bensin</string>
+    <string name="add_fuel_hint_station">Nama atau lokasi SPBU</string>
+    <string name="add_fuel_label_receipt">Bukti Transaksi (Opsional)</string>
+    <string name="add_fuel_upload_receipt">Upload Struk</string>
+    <string name="action_save">Simpan</string>
+
+    <!-- Fuel History -->
+    <string name="fuel_history_title">Riwayat BBM</string>
+    <string name="fuel_history_subtitle">Pantau efisiensi dan pengeluaran bahan bakar.</string>
+    <string name="fuel_history_efficiency_label">Efisiensi Rata-rata</string>
+    <string name="fuel_history_efficiency_value">14.5</string>
+    <string name="fuel_history_expense_label">Total Pengeluaran Bulan Ini</string>
+    <string name="fuel_history_expense_value">1.200.000</string>
+    <string name="cd_add_fuel_entry">Tambah catatan BBM</string>
+
+    <!-- Vehicle Documents -->
+    <string name="documents_title">Dokumen Kendaraan</string>
+    <string name="cd_search">Cari dokumen</string>
+    <string name="cd_add_document">Tambah dokumen</string>
+    <string name="documents_alert_title">Pajak Tahunan Jatuh Tempo!</string>
+    <string name="documents_alert_body">Harap segera perpanjang dokumen\nuntuk menghindari denda.</string>
+    <string name="documents_alert_badge">PENTING</string>
+
+    <!-- Service History -->
+    <string name="service_history_title">Riwayat Servis</string>
+    <string name="service_next_label">SERVIS BERIKUTNYA</string>
+    <string name="service_next_title">Servis Berkala 20rb\nKM</string>
+    <string name="service_next_date">15 Okt 2024</string>
+    <string name="service_remaining_label">Sisa Jarak</string>
+    <string name="service_remaining_value">1.250</string>
+    <string name="service_remaining_unit">km</string>
+    <string name="service_status_done">Selesai</string>
+    <string name="service_label_date_distance">Tanggal &amp; Jarak</string>
+    <string name="service_label_total_cost">Total Biaya</string>
+    <string name="cd_add_service">Tambah servis</string>
+
+    <!-- Profile & Settings -->
+    <string name="profile_title">Kendaraanku</string>
+    <string name="cd_settings">Pengaturan</string>
+    <string name="profile_name">Budi Santoso</string>
+    <string name="profile_vehicle_count">2 Kendaraan</string>
+    <string name="cd_avatar">Foto profil</string>
+    <string name="section_account">Akun</string>
+    <string name="row_edit_profile">Edit Profil</string>
+    <string name="row_security">Keamanan</string>
+    <string name="section_app">Aplikasi</string>
+    <string name="row_theme">Tema</string>
+    <string name="row_theme_value">Light</string>
+    <string name="row_language">Bahasa</string>
+    <string name="row_language_value">Indonesia</string>
+    <string name="row_notifications">Notifikasi</string>
+    <string name="section_data">Data</string>
+    <string name="row_backup_restore">Backup &amp; Restore</string>
+    <string name="row_export_report">Ekspor Laporan</string>
+    <string name="row_export_report_value">PDF/CSV</string>
+    <string name="section_info">Info</string>
+    <string name="row_help">Bantuan</string>
+    <string name="row_about">Tentang Aplikasi</string>
+    <string name="row_privacy_policy">Kebijakan Privasi</string>
+    <string name="action_logout">Keluar</string>
+    <string name="profile_avatar_initials">BS</string>
+
+    <!-- Step progress numbers -->
+    <string name="step_number_1">1</string>
+    <string name="step_number_2">2</string>
+    <string name="step_number_3">3</string>
+
+    <!-- Empty states -->
+    <string name="empty_activity_title">Belum ada aktivitas</string>
+    <string name="empty_activity_subtitle">Transaksi BBM, servis, dan lainnya akan muncul di sini</string>
+    <string name="empty_reminder_title">Tidak ada pengingat</string>
+    <string name="empty_reminder_subtitle">Pengingat pajak dan servis akan muncul saat jatuh tempo mendekat</string>
+    <string name="empty_vehicle_activity_title">Belum ada riwayat</string>
+    <string name="empty_vehicle_activity_subtitle">Riwayat BBM, servis, dan dokumen kendaraan ini akan muncul di sini</string>
+    <string name="empty_fuel_log_title">Belum ada catatan BBM</string>
+    <string name="empty_fuel_log_subtitle">Tap tombol + untuk menambahkan catatan pengisian BBM pertamamu</string>
+    <string name="empty_document_title">Belum ada dokumen</string>
+    <string name="empty_document_subtitle">Tambahkan STNK, BPKB, dan dokumen lainnya untuk memantau masa berlakunya</string>
+    <string name="empty_service_title">Belum ada riwayat servis</string>
+    <string name="empty_service_subtitle">Tap tombol + untuk mencatat servis kendaraanmu</string>
+</resources>

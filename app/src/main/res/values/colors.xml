@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Brand -->
+    <color name="brand_ink">#191B23</color>
+    <color name="brand_blue">#3D6BF5</color>
+    <color name="brand_link">#1750DB</color>
+    
+    <!-- CTA (TODO: Konfirmasi Figma) -->
+    <color name="color_cta_primary">#191B23</color>
+    <color name="color_cta_on_primary">#FFFFFF</color>
+
+    <!-- Text -->
+    <color name="text_primary">#191B23</color>
+    <color name="text_secondary">#434655</color>
+    <color name="text_placeholder">#6B7280</color>
+    <color name="icon_secondary">#747686</color>
+
+    <!-- Surfaces & borders -->
+    <color name="surface_white">#FFFFFF</color>
+    <color name="surface_variant">#F5F7FA</color>
+    <color name="surface_input">#F3F2FE</color>
+    <color name="border_default">#C3C5D7</color>
+    <color name="border_card">#E2E1ED</color>
+    <color name="border_highlight">#DCE1FF</color>
+    <color name="surface_highlight">#EBF1FF</color>
+    
+    <color name="border_card_translucent">#4DE2E1ED</color>
+    <color name="border_divider_translucent">#66C3C5D7</color>
+    
+    <!-- Translucent Overlay (Neutral) -->
+    <color name="glass_overlay_light">#0D191B23</color>
+
+    <!-- Semantic status -->
+    <color name="status_success">#16A34A</color>
+    <color name="status_warning">#F59E0B</color>
+    <color name="status_error">#DC2626</color>
+    <color name="status_error_container">#FEF2F2</color>
+    <color name="status_info_container">#EFF6FF</color>
+
+    <!-- Home Dashboard / Reminder Specific -->
+    <color name="status_active_dot">#4ADE80</color>
+    <color name="nav_item_selected_bg">#1A191B23</color>
+    <color name="icon_bg_frosted">#CCFFFFFF</color>
+
+    <!-- Documents / Alerts -->
+    <color name="surface_alert_frosted">#EBFFFFFF</color>
+    
+    <!-- Timeline -->
+    <color name="timeline_divider">#80E1E4E8</color>
+
+    <!-- Profile -->
+    <color name="avatar_placeholder_bg">#3D6BF5</color>
+
+    <!-- Glassmorphism / Luminous Frosted -->
+    <color name="glass_dock_bg">#D9FFFFFF</color>
+    <color name="glass_pill_bg">#CCFAF8FF</color>
+    <color name="glass_pill_stroke">#1A191B23</color>
+    <color name="glass_highlight">#66FFFFFF</color>
+    <color name="glass_overlay_press">#33FFFFFF</color>
+    <color name="dot_active">#191B23</color>
+    <color name="dot_inactive">#E2E1ED</color>
+
+    <!-- Gradients -->
+    <color name="gradient_cta_start">#191B23</color>
+    <color name="gradient_cta_end">#6B7280</color>
+
+    <!-- Neutral scale (Tailwind-aligned, as used in Figma) -->
+    <color name="neutral_50">#F9FAFB</color>
+    <color name="neutral_300">#D1D5DB</color>
+    <color name="neutral_600">#4B5563</color>
+    <color name="neutral_900">#1A1A1A</color>
+    <color name="border_alert_red_20">#336B7280</color>
+    <color name="border_card_subtle">#336B7280</color>
+    <color name="border_divider_subtle">#336B7280</color>
+    <color name="divider_faint">#336B7280</color>
+    <color name="doc_card_border">#336B7280</color>
+    <color name="glass_blob_blue">@color/surface_variant</color>
+    <color name="glass_blob_peach">@color/surface_variant</color>
+    <color name="glass_blob_teal">@color/surface_variant</color>
+    <color name="glass_blob_violet">@color/surface_variant</color>
+    <color name="glass_overlay_blue_5">@color/surface_variant</color>
+    <color name="glass_overlay_cyan_10">@color/surface_variant</color>
+    <color name="glass_stat_block_bg">@color/surface_variant</color>
+    <color name="glass_stat_block_border">@color/surface_variant</color>
+    <color name="glass_stat_panel_bg">@color/surface_variant</color>
+    <color name="glass_stat_panel_bg_light">@color/surface_variant</color>
+    <color name="glass_stat_panel_border">@color/surface_variant</color>
+    <color name="handle_bar">@color/icon_secondary</color>
+    <color name="icon_blue">@color/icon_secondary</color>
+    <color name="icon_warning_bright">@color/icon_secondary</color>
+    <color name="overlay_black_20">@color/surface_variant</color>
+    <color name="profile_header_border">#336B7280</color>
+    <color name="reminder_standard_bg">@color/surface_variant</color>
+    <color name="reminder_standard_border">#336B7280</color>
+    <color name="reminder_urgent_accent">@color/text_primary</color>
+    <color name="reminder_urgent_bg">@color/surface_variant</color>
+    <color name="reminder_urgent_border">#336B7280</color>
+    <color name="reminder_urgent_subtitle">@color/text_primary</color>
+    <color name="settings_card_border">#336B7280</color>
+    <color name="shadow_link_20">@color/text_primary</color>
+    <color name="status_amber_bg">@color/surface_variant</color>
+    <color name="status_amber_text">@color/text_primary</color>
+    <color name="status_done_bg">@color/surface_variant</color>
+    <color name="status_error_strong">@color/text_primary</color>
+    <color name="surface_close_button">@color/surface_variant</color>
+    <color name="surface_header">@color/surface_variant</color>
+    <color name="surface_indigo_light">@color/surface_variant</color>
+    <color name="surface_input_faint">@color/surface_variant</color>
+    <color name="surface_lavender_light">@color/surface_variant</color>
+    <color name="surface_profile_header">@color/surface_variant</color>
+    <color name="surface_teal_light">@color/surface_variant</color>
+    <color name="surface_total_cost">@color/surface_variant</color>
+    <color name="tab_indicator_track">@color/icon_secondary</color>
+    <color name="tab_text_inactive">@color/text_primary</color>
+    <color name="text_heading_alt">@color/text_primary</color>
+    <color name="text_heading_dark">@color/text_primary</color>
+    <color name="text_muted_alt">@color/text_primary</color>
+    <color name="text_white_70">@color/text_primary</color>
+    <color name="timeline_card_border">#336B7280</color>
+    <color name="timeline_dot_ring">#336B7280</color>
+    <color name="status_neutral_bg">@color/surface_variant</color>
+    <color name="status_teal_bg">@color/surface_variant</color>
+    <color name="status_teal_text">@color/text_primary</color>
+    <color name="reminder_standard_accent">@color/icon_secondary</color>
+    <color name="reminder_urgent_title">@color/text_primary</color>
+    <color name="reminder_standard_title">@color/text_primary</color>
+    <color name="reminder_standard_subtitle">@color/text_secondary</color>
+</resources>

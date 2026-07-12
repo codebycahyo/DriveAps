@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale (4dp grid) -->
+    <dimen name="spacing_0">0dp</dimen>
+    <dimen name="spacing_2">2dp</dimen>
+    <dimen name="spacing_4">4dp</dimen>
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_32">32dp</dimen>
+    <dimen name="spacing_40">40dp</dimen>
+    <dimen name="spacing_48">48dp</dimen>
+    <dimen name="spacing_64">64dp</dimen>
+    <dimen name="spacing_72">72dp</dimen>
+    <dimen name="spacing_96">96dp</dimen>
+    <dimen name="spacing_128">128dp</dimen>
+    <dimen name="spacing_screen">16dp</dimen>
+    <dimen name="spacing_section">24dp</dimen>
+
+    <!-- Corner radii -->
+    <dimen name="radius_xxs">4dp</dimen>
+    <dimen name="radius_xs">8dp</dimen>
+    <dimen name="radius_small">12dp</dimen>
+    <dimen name="radius_medium">14dp</dimen>
+    <dimen name="radius_medium_16">16dp</dimen>
+    <dimen name="radius_large">24dp</dimen>
+    <dimen name="radius_xlarge">32dp</dimen>
+    <dimen name="radius_pill">9999dp</dimen>
+    <dimen name="radius_card_default">16dp</dimen>
+    <dimen name="radius_card_small">12dp</dimen>
+
+    <!-- Component sizes -->
+    <dimen name="icon_button_min_size">48dp</dimen>
+    <dimen name="logo_size">64dp</dimen>
+    <dimen name="input_height">56dp</dimen>
+    <dimen name="input_height_compact">50dp</dimen>
+    <dimen name="button_height">56dp</dimen>
+    <dimen name="button_height_small">48dp</dimen>
+    <dimen name="hero_illustration_size">350dp</dimen>
+    <dimen name="dot_size">8dp</dimen>
+    <dimen name="dot_size_active">32dp</dimen>
+
+    <!-- Standard Icon Sizes -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_medium">20dp</dimen>
+    <dimen name="icon_size_large">24dp</dimen>
+    <dimen name="icon_size_xlarge">32dp</dimen>
+    <dimen name="icon_size_xxlarge">48dp</dimen>
+
+    <!-- Bottom navigation (floating dock) -->
+    <dimen name="bottom_nav_height">64dp</dimen>
+    <dimen name="bottom_nav_margin_horizontal">16dp</dimen>
+    <dimen name="bottom_nav_margin_bottom">12dp</dimen>
+    <dimen name="bottom_nav_corner">32dp</dimen>
+    <dimen name="bottom_nav_indicator_height">44dp</dimen>
+    <dimen name="bottom_nav_indicator_padding_h">18dp</dimen>
+    <dimen name="bottom_nav_icon">22dp</dimen>
+    <dimen name="nav_icon">24dp</dimen>
+
+    <!-- Stroke widths -->
+    <dimen name="stroke_thin">1dp</dimen>
+    <dimen name="stroke_medium">2dp</dimen>
+
+    <!-- Elevation -->
+    <dimen name="elevation_none">0dp</dimen>
+    <dimen name="elevation_card">4dp</dimen>
+    <dimen name="elevation_dock">10dp</dimen>
+</resources>

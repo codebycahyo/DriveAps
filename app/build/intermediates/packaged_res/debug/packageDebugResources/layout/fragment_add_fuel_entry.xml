@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/surface_white"
+    android:orientation="vertical"
+    tools:context=".ui.addfuel.AddFuelEntryFragment">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="48dp"
+        android:layout_height="6dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_12"
+        android:background="@drawable/shape_pill_solid"
+        android:backgroundTint="@color/handle_bar" />
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_16"
+        android:paddingEnd="@dimen/spacing_8"
+        android:paddingTop="@dimen/spacing_20">
+
+        <com.example.kendaraanbp1.ui.widget.DTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add_fuel_title"
+            android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+            app:lineHeightSp="24" />
+
+        <FrameLayout
+            android:id="@+id/closeButton"
+            android:layout_width="@dimen/icon_button_min_size"
+            android:layout_height="@dimen/icon_button_min_size"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <FrameLayout
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_pill_solid"
+                android:backgroundTint="@color/surface_close_button">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_small"
+                    android:layout_height="@dimen/icon_size_small"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/cd_close"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/text_secondary" />
+            </FrameLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stroke_thin"
+        android:background="@color/border_card" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="550dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_16">
+
+            <!-- Large numeric inputs -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_numeric_input_card"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
+
+                    <com.example.kendaraanbp1.ui.widget.DTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_fuel_label_liter"
+                        android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                        app:lineHeightSp="16" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/etLiter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/add_fuel_hint_liter"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:padding="@dimen/spacing_0"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.NumericInput"
+                            android:textColorHint="@color/border_default" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_8"
+                            android:text="@string/add_fuel_unit_liter"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.UnitLabel16"
+                            app:lineHeightSp="20" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_numeric_input_card"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_16">
+
+                    <com.example.kendaraanbp1.ui.widget.DTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_fuel_label_price"
+                        android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                        app:lineHeightSp="16" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:gravity="bottom"
+                        android:orientation="horizontal">
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_8"
+                            android:text="@string/add_fuel_prefix_currency"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.UnitLabel16"
+                            app:lineHeightSp="20" />
+
+                        <EditText
+                            android:id="@+id/etPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/add_fuel_hint_price"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:padding="@dimen/spacing_0"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.NumericInput"
+                            android:textColorHint="@color/border_default" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Total cost -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:background="@drawable/bg_total_cost_card"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_16">
+
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/add_fuel_total_label"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                    app:lineHeightSp="20" />
+
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:id="@+id/totalCostValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_fuel_total_value"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                    app:lineHeightSp="24" />
+            </LinearLayout>
+
+            <!-- Odometer -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:text="@string/add_fuel_label_odometer"
+                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                android:textColor="@color/text_primary"
+                app:lineHeightSp="20" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:background="@drawable/bg_input_field_faint">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_medium"
+                    android:layout_height="@dimen/icon_size_small"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_gauge"
+                    app:tint="@color/border_default" />
+
+                <EditText
+                    android:id="@+id/etOdometer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_40"
+                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/add_fuel_hint_odometer"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.InputText16"
+                    android:textColorHint="@color/border_default" />
+            </FrameLayout>
+
+            <!-- Gas station -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:text="@string/add_fuel_label_station"
+                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                android:textColor="@color/text_primary"
+                app:lineHeightSp="20" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:background="@drawable/bg_input_field_faint">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_medium"
+                    android:layout_height="@dimen/icon_size_medium"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_map_pin"
+                    app:tint="@color/border_default" />
+
+                <EditText
+                    android:id="@+id/etStation"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_40"
+                    android:layout_marginEnd="@dimen/spacing_16"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/add_fuel_hint_station"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.InputText16"
+                    android:textColorHint="@color/border_default" />
+            </FrameLayout>
+
+            <!-- Receipt attachment -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_16"
+                android:text="@string/add_fuel_label_receipt"
+                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                android:textColor="@color/text_primary"
+                app:lineHeightSp="20" />
+
+            <LinearLayout
+                android:id="@+id/uploadReceiptButton"
+                android:layout_width="match_parent"
+                android:layout_height="87dp"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:background="@drawable/bg_receipt_upload"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_large"
+                    android:layout_height="@dimen/icon_size_large"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_image_up"
+                    app:tint="@color/border_default" />
+
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:text="@string/add_fuel_upload_receipt"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                    app:lineHeightSp="20" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/stroke_thin"
+        android:background="@color/border_card" />
+
+    <!-- Footer CTA -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_16">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
+            style="@style/Widget.DriveTrack.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/action_save"
+            app:cornerRadius="@dimen/radius_pill"
+            app:icon="@drawable/ic_check" />
+    </LinearLayout>
+</LinearLayout>

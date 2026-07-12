@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_50"
+    tools:context=".ui.servicehistory.ServiceHistoryFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:background="@color/glass_dock_bg"
+        android:elevation="@dimen/elevation_card"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_12"
+        android:paddingEnd="@dimen/spacing_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/icon_button_min_size"
+            android:layout_height="@dimen/icon_button_min_size"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_gravity="center"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_arrow_left"
+                app:tint="@color/text_primary" />
+        </FrameLayout>
+
+        <com.example.kendaraanbp1.ui.widget.DTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_weight="1"
+            android:text="@string/service_history_title"
+            android:textAppearance="@style/TextAppearance.DriveTrack.AppBarTitle"
+            android:textSize="20sp"
+            app:lineHeightSp="28" />
+
+        <FrameLayout
+            android:id="@+id/searchButton"
+            android:layout_width="@dimen/icon_button_min_size"
+            android:layout_height="@dimen/icon_button_min_size"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_gravity="center"
+                android:contentDescription="@string/cd_search"
+                android:src="@drawable/ic_search"
+                app:tint="@color/text_primary" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_20"
+            android:paddingTop="@dimen/spacing_24"
+            android:paddingBottom="@dimen/spacing_96">
+
+            <!-- Next service reminder -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hero_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_24"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_next_label"
+                            android:textAllCaps="true"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.OverlineWhite"
+                            app:lineHeightSp="20" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/service_next_title"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.Title20"
+                            android:textColor="@color/white"
+                            app:lineHeightSp="28" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_small"
+                                android:layout_height="@dimen/icon_size_small"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_calendar"
+                                app:tint="@color/text_white_70" />
+
+                            <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_8"
+                                android:text="@string/service_next_date"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                                android:textColor="@color/text_white_70"
+                                app:lineHeightSp="20" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/bg_glass_side_panel"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/service_remaining_label"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.StatLabelWhite"
+                            app:lineHeightSp="16" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/service_remaining_value"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.DisplayWhite"
+                            app:lineHeightSp="28" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/service_remaining_unit"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.StatLabelWhite"
+                            android:textColor="@color/white"
+                            app:lineHeightSp="16" />
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Timeline -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serviceTimelineList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_service_timeline" />
+
+            <include
+                android:id="@+id/serviceEmptyState"
+                layout="@layout/layout_empty_state" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- FAB -->
+    <FrameLayout
+        android:id="@+id/addServiceFab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="@dimen/spacing_20"
+        android:layout_marginBottom="@dimen/spacing_16"
+        android:background="@drawable/shape_pill_solid"
+        android:backgroundTint="@color/surface_white"
+        android:elevation="@dimen/elevation_dock"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavInclude"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:layout_gravity="center"
+            android:contentDescription="@string/cd_add_service"
+            android:src="@drawable/ic_plus"
+            app:tint="@color/brand_blue" />
+    </FrameLayout>
+
+    <!-- Bottom nav -->
+    <include
+        android:id="@+id/bottomNavInclude"
+        layout="@layout/layout_bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/bottom_nav_margin_horizontal"
+        android:layout_marginBottom="@dimen/bottom_nav_margin_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

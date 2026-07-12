@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_white"
+    android:fillViewport="true"
+    tools:context=".ui.register.RegisterFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false">
+
+        <View
+            android:layout_width="384dp"
+            android:layout_height="384dp"
+            android:layout_marginStart="-96dp"
+            android:layout_marginTop="-96dp"
+            android:background="@drawable/shape_oval_solid"
+            android:backgroundTint="@color/glass_overlay_blue_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_marginStart="262dp"
+            android:layout_marginTop="495dp"
+            android:background="@drawable/shape_oval_solid"
+            android:backgroundTint="@color/glass_overlay_cyan_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/spacing_16"
+            android:paddingTop="@dimen/spacing_48"
+            android:paddingBottom="@dimen/spacing_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Header identity -->
+            <LinearLayout
+                android:id="@+id/headerBrand"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <FrameLayout
+                    android:layout_width="@dimen/logo_size"
+                    android:layout_height="@dimen/logo_size"
+                    android:background="@drawable/bg_badge_rounded">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_xlarge"
+                        android:layout_height="@dimen/icon_size_medium"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cd_logo"
+                        android:src="@drawable/img_logo_mark"
+                        app:tint="@color/white" />
+                </FrameLayout>
+
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:gravity="center"
+                    android:text="@string/login_brand_title"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.BrandTitle"
+                    app:lineHeightSp="32" />
+
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_4"
+                    android:gravity="center"
+                    android:text="@string/register_brand_subtitle"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                    app:lineHeightSp="20" />
+            </LinearLayout>
+
+            <!-- Registration form card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/registerCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="@dimen/radius_large"
+                app:cardElevation="@dimen/elevation_card"
+                app:strokeColor="@color/border_card_translucent"
+                app:strokeWidth="@dimen/stroke_thin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headerBrand">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_24">
+
+                    <com.example.kendaraanbp1.ui.widget.DTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/register_heading"
+                        android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                        app:lineHeightSp="24" />
+
+                    <!-- Form -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:orientation="vertical">
+
+                        <!-- Full name -->
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/register_label_name"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                            android:textColor="@color/icon_secondary"
+                            app:lineHeightSp="16" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.DriveTrack.TextInputLayout.Compact"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            app:startIconDrawable="@drawable/ic_user"
+                            app:startIconTint="@color/icon_secondary">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="44dp"
+                                android:paddingEnd="16dp"
+                                android:gravity="start|center_vertical"
+                                android:autofillHints="name"
+                                android:hint="@string/register_hint_name"
+                                android:inputType="textPersonName"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
+                                android:textColorHint="@color/border_default" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Email -->
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/register_label_email"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                            android:textColor="@color/icon_secondary"
+                            app:lineHeightSp="16" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.DriveTrack.TextInputLayout.Compact"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            app:startIconDrawable="@drawable/ic_mail"
+                            app:startIconTint="@color/icon_secondary">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="44dp"
+                                android:paddingEnd="16dp"
+                                android:gravity="start|center_vertical"
+                                android:autofillHints="emailAddress"
+                                android:hint="@string/register_hint_email"
+                                android:inputType="textEmailAddress"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
+                                android:textColorHint="@color/border_default" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Password -->
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/register_label_password"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                            android:textColor="@color/icon_secondary"
+                            app:lineHeightSp="16" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.DriveTrack.TextInputLayout.Compact"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            app:endIconDrawable="@drawable/selector_password_toggle"
+                            app:endIconMode="password_toggle"
+                            app:endIconTint="@color/icon_secondary"
+                            app:startIconDrawable="@drawable/ic_lock"
+                            app:startIconTint="@color/icon_secondary">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="44dp"
+                                android:paddingEnd="44dp"
+                                android:gravity="start|center_vertical"
+                                android:autofillHints="password"
+                                android:hint="@string/login_hint_password"
+                                android:inputType="textPassword"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
+                                android:textColorHint="@color/border_default" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Confirm password -->
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/register_label_confirm_password"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                            android:textColor="@color/icon_secondary"
+                            app:lineHeightSp="16" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.DriveTrack.TextInputLayout.Compact"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            app:endIconDrawable="@drawable/selector_password_toggle"
+                            app:endIconMode="password_toggle"
+                            app:endIconTint="@color/icon_secondary"
+                            app:startIconDrawable="@drawable/ic_lock"
+                            app:startIconTint="@color/icon_secondary">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:autofillHints="password"
+                                android:hint="@string/login_hint_password"
+                                android:inputType="textPassword"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
+                                android:textColorHint="@color/border_default" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Terms checkbox -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/termsCheckbox"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:background="@null"
+                                android:button="@drawable/selector_checkbox"
+                                android:contentDescription="@string/cd_checkbox_terms" />
+
+                            <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_12"
+                                android:text="@string/register_terms"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                                app:lineHeightSp="20" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/registerButton"
+                            style="@style/Widget.DriveTrack.Button.Primary"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/button_height"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/register_cta"
+                            app:cornerRadius="@dimen/radius_small"
+                            app:icon="@drawable/ic_arrow_forward" />
+                    </LinearLayout>
+
+                    <!-- Social divider -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_24"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/stroke_thin"
+                            android:layout_weight="1"
+                            android:background="@color/border_divider_translucent" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/spacing_16"
+                            android:text="@string/register_divider_social"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
+                            android:textColor="@color/border_default"
+                            app:lineHeightSp="16" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/stroke_thin"
+                            android:layout_weight="1"
+                            android:background="@color/border_divider_translucent" />
+                    </LinearLayout>
+
+                    <!-- Social buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_16"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.DriveTrack.Button.Social"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height_small"
+                            android:layout_weight="1"
+                            android:text="@string/login_social_google"
+                            app:icon="@drawable/ic_google" />
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.DriveTrack.Button.Social"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/button_height_small"
+                            android:layout_marginStart="@dimen/spacing_16"
+                            android:layout_weight="1"
+                            android:text="@string/login_social_facebook"
+                            app:icon="@drawable/ic_facebook" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Footer link -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:id="@+id/footerLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/register_footer_link"
+                android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/registerCard"
+                app:lineHeightSp="20" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

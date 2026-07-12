@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_white"
+    android:clipChildren="false"
+    tools:context=".ui.onboarding.OnboardingWelcomeFragment">
+
+    <!-- Atmospheric pastel blobs (depth layer). True gaussian blur is approximated with soft,
+         low-opacity flat circles since RenderEffect blur is API 31+ only; see Fragment for the
+         progressive-enhancement real blur applied on supported devices. -->
+    <View
+        android:id="@+id/blobBlue"
+        android:layout_width="442dp"
+        android:layout_height="442dp"
+        android:layout_marginStart="-39dp"
+        android:layout_marginTop="-88dp"
+        android:alpha="0.8"
+        android:background="@drawable/shape_oval_solid"
+        android:backgroundTint="@color/glass_blob_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/blobViolet"
+        android:layout_width="397dp"
+        android:layout_height="397dp"
+        android:layout_marginStart="@dimen/spacing_48"
+        android:layout_marginTop="177dp"
+        android:alpha="0.7"
+        android:background="@drawable/shape_oval_solid"
+        android:backgroundTint="@color/glass_blob_violet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/blobTeal"
+        android:layout_width="530dp"
+        android:layout_height="530dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="266dp"
+        android:alpha="0.6"
+        android:background="@drawable/shape_oval_solid"
+        android:backgroundTint="@color/glass_blob_teal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_20"
+        android:paddingTop="@dimen/spacing_96"
+        android:paddingBottom="210dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/heroImage"
+            android:layout_width="@dimen/hero_illustration_size"
+            android:layout_height="@dimen/hero_illustration_size"
+            android:layout_marginBottom="@dimen/spacing_24"
+            android:contentDescription="@string/cd_hero_illustration"
+            android:elevation="@dimen/elevation_card"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_onboarding_welcome_hero"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.DriveTrack.Rounded24" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_24"
+            android:background="@drawable/bg_feature_tag_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/spacing_16"
+            android:paddingVertical="@dimen/spacing_8">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_eye"
+                app:tint="@color/text_primary" />
+
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:text="@string/onboarding_welcome_tag"
+                android:textAppearance="@style/TextAppearance.DriveTrack.LabelMedium"
+                app:lineHeightSp="16" />
+        </LinearLayout>
+
+        <com.example.kendaraanbp1.ui.widget.DTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_8"
+            android:gravity="center"
+            android:paddingHorizontal="41dp"
+            android:text="@string/onboarding_welcome_headline"
+            android:textAppearance="@style/TextAppearance.DriveTrack.Display"
+            app:lineHeightSp="40" />
+
+        <com.example.kendaraanbp1.ui.widget.DTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/spacing_4"
+            android:text="@string/onboarding_welcome_body"
+            android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+            app:lineHeightSp="20" />
+    </LinearLayout>
+
+    <!-- Liquid glass bottom control dock -->
+    <FrameLayout
+        android:id="@+id/bottomDock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_glass_dock"
+        android:elevation="@dimen/elevation_dock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="top"
+            android:background="@color/glass_highlight" />
+
+        <LinearLayout
+            android:id="@+id/dockContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_20"
+            android:paddingTop="@dimen/spacing_24"
+            android:paddingBottom="@dimen/spacing_32">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="@dimen/dot_size_active"
+                    android:layout_height="@dimen/dot_size"
+                    android:background="@drawable/shape_dot_active" />
+
+                <View
+                    android:layout_width="@dimen/dot_size"
+                    android:layout_height="@dimen/dot_size"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:background="@drawable/shape_dot_inactive" />
+
+                <View
+                    android:layout_width="@dimen/dot_size"
+                    android:layout_height="@dimen/dot_size"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:background="@drawable/shape_dot_inactive" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextButton"
+                style="@style/Widget.DriveTrack.Button.GradientCta"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:text="@string/onboarding_cta_next"
+                app:cornerRadius="@dimen/radius_pill"
+                app:icon="@drawable/ic_arrow_forward" />
+        </LinearLayout>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DTextView">
+        <!-- Exact line height in sp, taken directly from Figma's lineHeightPx. Applied via
+             TextViewCompat.setLineHeight so it renders identically on API 21+ without the
+             API-28-only android:lineHeight attribute. -->
+        <attr name="lineHeightSp" format="float" />
+    </declare-styleable>
+</resources>
