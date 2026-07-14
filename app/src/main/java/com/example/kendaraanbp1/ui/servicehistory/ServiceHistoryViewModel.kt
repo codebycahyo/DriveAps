@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,20 @@ class ServiceHistoryViewModel(
         serviceRepo.getLogsByVehicle(id)
     }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading())
 
-    fun addOrUpdate(log: ServiceLogEntity) {
+    /** Servis terjadwal terdekat (nextServiceDate ke depan), atau null bila belum ada. */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val upcomingService: StateFlow<ServiceLogEntity?> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf(null)
+        serviceRepo.getUpcomingServices(id, System.currentTimeMillis()).map { res ->
+            (res.data ?: emptyList()).minByOrNull { it.nextServiceDate ?: Long.MAX_VALUE }
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, null)
+
+    fun addOrUpdate(
+        log: ServiceLogEntity,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         viewModelScope.launch {
             if (log.id == 0L) {
                 val resource = serviceRepo.insertLog(log)
@@ -45,6 +59,9 @@ class ServiceHistoryViewModel(
                             message = "Servis ${log.category} sudah dekat."
                         )
                     }
+                    onSuccess()
+                } else if (resource is Resource.Error) {
+                    onError(resource.message ?: "Gagal")
                 }
             } else {
                 val resource = serviceRepo.updateLog(log)
@@ -59,16 +76,26 @@ class ServiceHistoryViewModel(
                     } ?: run {
                         notificationScheduler.cancelServiceNotifs(log.id)
                     }
+                    onSuccess()
+                } else if (resource is Resource.Error) {
+                    onError(resource.message ?: "Gagal")
                 }
             }
         }
     }
 
-    fun deleteLog(log: ServiceLogEntity) {
+    fun deleteLog(
+        log: ServiceLogEntity,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         viewModelScope.launch {
             val resource = serviceRepo.deleteLog(log)
             if (resource is Resource.Success) {
                 notificationScheduler.cancelServiceNotifs(log.id)
+                onSuccess()
+            } else if (resource is Resource.Error) {
+                onError(resource.message ?: "Gagal")
             }
         }
     }

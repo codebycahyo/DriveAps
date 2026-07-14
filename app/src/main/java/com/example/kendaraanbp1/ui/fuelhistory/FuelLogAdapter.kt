@@ -9,7 +9,10 @@ import com.example.kendaraanbp1.R
 import com.example.kendaraanbp1.data.model.FuelLogItem
 import com.example.kendaraanbp1.databinding.ItemFuelLogBinding
 
-class FuelLogAdapter : ListAdapter<FuelLogItem, FuelLogAdapter.ViewHolder>(DIFF) {
+class FuelLogAdapter(
+    private val onEditClick: (FuelLogItem) -> Unit,
+    private val onDeleteClick: (FuelLogItem) -> Unit
+) : ListAdapter<FuelLogItem, FuelLogAdapter.ViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemFuelLogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,17 +20,23 @@ class FuelLogAdapter : ListAdapter<FuelLogItem, FuelLogAdapter.ViewHolder>(DIFF)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onEditClick, onDeleteClick)
     }
 
     class ViewHolder(private val binding: ItemFuelLogBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: FuelLogItem) {
+        fun bind(item: FuelLogItem, onEdit: (FuelLogItem) -> Unit, onDelete: (FuelLogItem) -> Unit) {
             binding.logIcon.setImageResource(R.drawable.ic_fuel)
             binding.logStationName.text = item.stationName
             binding.logDate.text = item.date
             binding.logAmount.text = item.amountLabel
             binding.logLiters.text = item.litersLabel
             binding.logOdometer.text = item.odometerLabel
+            
+            binding.root.setOnClickListener { onEdit(item) }
+            binding.root.setOnLongClickListener { 
+                onDelete(item)
+                true
+            }
         }
     }
 

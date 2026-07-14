@@ -115,6 +115,7 @@
                                     app:lineHeightSp="16" />
 
                                 <com.example.kendaraanbp1.ui.widget.DTextView
+                                    android:id="@+id/statFuelValue"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/vehicle_detail_stat_fuel_value"
@@ -136,6 +137,7 @@
                                     app:lineHeightSp="16" />
 
                                 <com.example.kendaraanbp1.ui.widget.DTextView
+                                    android:id="@+id/statServiceValue"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/vehicle_detail_stat_service_value"
@@ -157,6 +159,7 @@
                                     app:lineHeightSp="16" />
 
                                 <com.example.kendaraanbp1.ui.widget.DTextView
+                                    android:id="@+id/statOdometerValue"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/vehicle_detail_stat_odometer_value"

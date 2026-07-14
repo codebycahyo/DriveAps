@@ -11,7 +11,10 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
+import com.example.kendaraanbp1.util.VehicleStats
 
 class FuelHistoryViewModel(
     private val fuelRepo: FuelRepository
@@ -37,4 +40,23 @@ class FuelHistoryViewModel(
         val start = end - (30L * 24 * 60 * 60 * 1000)
         fuelRepo.getTotalExpenseByPeriod(id, start, end)
     }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading())
+
+    /** Efisiensi rata-rata (km/L), atau "–" bila data belum cukup. */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val efficiency: StateFlow<String> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf("–")
+        fuelRepo.getLogsByVehicle(id).map { res ->
+            VehicleStats.formatKmPerL(VehicleStats.fuelEconomyKmPerL(res.data ?: emptyList()))
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, "–")
+
+    fun deleteFuelLog(log: FuelLogEntity, onSuccess: () -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            when (val res = fuelRepo.deleteLog(log)) {
+                is Resource.Success -> onSuccess()
+                is Resource.Error -> onError(res.message ?: "Terjadi kesalahan")
+                else -> {}
+            }
+        }
+    }
 }

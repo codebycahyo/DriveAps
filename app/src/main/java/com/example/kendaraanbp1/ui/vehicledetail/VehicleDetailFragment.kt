@@ -29,6 +29,7 @@ import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setActiveTab
 import com.example.kendaraanbp1.ui.util.setEmptyState
 import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 
 class VehicleDetailFragment : Fragment() {
@@ -63,7 +64,7 @@ class VehicleDetailFragment : Fragment() {
 
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
         binding.editButton.setOnClickListener {
-            // TODO: navigate to edit vehicle flow once implemented.
+            findNavController().navigate(R.id.action_vehicleDetailFragment_to_editVehicleFragment)
         }
         binding.addActivityFab.setOnClickListener {
             AddFuelEntryFragment().show(childFragmentManager, AddFuelEntryFragment.TAG)
@@ -133,6 +134,14 @@ class VehicleDetailFragment : Fragment() {
                 }
                 
                 launch {
+                    detailViewModel.vehicleStats.collect { stats ->
+                        binding.statFuelValue.text = stats.totalFuelLabel
+                        binding.statServiceValue.text = stats.serviceCountLabel
+                        binding.statOdometerValue.text = stats.odometerLabel
+                    }
+                }
+
+                launch {
                     detailViewModel.vehicleActivities.collect { resource ->
                         when (resource) {
                             is Resource.Success -> {
@@ -142,8 +151,11 @@ class VehicleDetailFragment : Fragment() {
                             }
                             is Resource.Error -> {
                                 binding.activityEmptyState.setEmptyState(true, binding.activityList)
+                                Snackbar.make(binding.root, "Gagal memuat aktivitas kendaraan", Snackbar.LENGTH_SHORT).show()
                             }
-                            else -> {}
+                            is Resource.Loading -> {
+                                binding.activityEmptyState.setEmptyState(false, binding.activityList)
+                            }
                         }
                     }
                 }

@@ -24,6 +24,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import com.example.kendaraanbp1.databinding.ItemQuickActionBinding
+import com.google.android.material.snackbar.Snackbar
 import com.example.kendaraanbp1.ui.addfuel.AddFuelEntryFragment
 import com.example.kendaraanbp1.ui.util.BottomNavTab
 import com.example.kendaraanbp1.ui.util.VerticalSpaceItemDecoration
@@ -137,12 +138,35 @@ class HomeDashboardFragment : Fragment() {
                         homeViewModel.setVehicleId(id)
                     }
                 }
-                
+
+                launch {
+                    homeViewModel.monthlyExpense.collect { value ->
+                        binding.homeExpenseValue.text = value
+                    }
+                }
+
+                launch {
+                    homeViewModel.efficiency.collect { value ->
+                        binding.homeEfficiencyValue.text = value
+                    }
+                }
+
+                launch {
+                    homeViewModel.topReminder.collect { reminder ->
+                        if (reminder != null) {
+                            binding.reminderBadge.visibility = View.VISIBLE
+                            binding.homeReminderBadgeText.text = reminder.title
+                        } else {
+                            binding.reminderBadge.visibility = View.GONE
+                        }
+                    }
+                }
+
                 launch {
                     homeViewModel.recentActivities.collect { resource ->
                         when (resource) {
                             is Resource.Loading -> {
-                                // show loading state if needed
+                                binding.activityEmptyState.setEmptyState(false, binding.activityList)
                             }
                             is Resource.Success -> {
                                 val items = resource.data ?: emptyList()
@@ -150,8 +174,8 @@ class HomeDashboardFragment : Fragment() {
                                 binding.activityEmptyState.setEmptyState(items.isEmpty(), binding.activityList)
                             }
                             is Resource.Error -> {
-                                // show error state if needed
                                 binding.activityEmptyState.setEmptyState(true, binding.activityList)
+                                Snackbar.make(binding.root, "Gagal memuat aktivitas", Snackbar.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -161,7 +185,7 @@ class HomeDashboardFragment : Fragment() {
                     homeViewModel.reminders.collect { resource ->
                         when (resource) {
                             is Resource.Loading -> {
-                                // show loading state if needed
+                                binding.reminderEmptyState.setEmptyState(false, binding.reminderList)
                             }
                             is Resource.Success -> {
                                 val items = resource.data ?: emptyList()
@@ -169,7 +193,7 @@ class HomeDashboardFragment : Fragment() {
                                 binding.reminderEmptyState.setEmptyState(items.isEmpty(), binding.reminderList)
                             }
                             is Resource.Error -> {
-                                // show error
+                                binding.reminderEmptyState.setEmptyState(true, binding.reminderList)
                             }
                         }
                     }
@@ -181,21 +205,25 @@ class HomeDashboardFragment : Fragment() {
                             val vehicles = resource.data ?: emptyList()
                             val selectedId = sharedViewModel.selectedVehicleId.value
                             val selectedVehicle = vehicles.find { it.id == selectedId }
-                            if (selectedVehicle != null) {
-                                binding.homeVehicleName.text = "${selectedVehicle.brand} ${selectedVehicle.model}"
+                            binding.homeVehicleName.text = if (selectedVehicle != null) {
+                                "${selectedVehicle.brand} ${selectedVehicle.model}"
+                            } else {
+                                getString(R.string.home_no_vehicle)
                             }
                         }
                     }
                 }
-                
+
                 launch {
                     sharedViewModel.selectedVehicleId.collect { id ->
                         val resource = sharedViewModel.allVehicles.value
                         if (resource is Resource.Success) {
                             val vehicles = resource.data ?: emptyList()
                             val selectedVehicle = vehicles.find { it.id == id }
-                            if (selectedVehicle != null) {
-                                binding.homeVehicleName.text = "${selectedVehicle.brand} ${selectedVehicle.model}"
+                            binding.homeVehicleName.text = if (selectedVehicle != null) {
+                                "${selectedVehicle.brand} ${selectedVehicle.model}"
+                            } else {
+                                getString(R.string.home_no_vehicle)
                             }
                         }
                     }

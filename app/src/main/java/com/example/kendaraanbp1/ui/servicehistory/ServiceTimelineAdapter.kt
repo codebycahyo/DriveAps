@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kendaraanbp1.data.model.ServiceTimelineItem
 import com.example.kendaraanbp1.databinding.ItemServiceTimelineBinding
 
-class ServiceTimelineAdapter : ListAdapter<ServiceTimelineItem, ServiceTimelineAdapter.ViewHolder>(DIFF) {
+class ServiceTimelineAdapter(
+    private val onEditClick: (ServiceTimelineItem) -> Unit,
+    private val onDeleteClick: (ServiceTimelineItem) -> Unit
+) : ListAdapter<ServiceTimelineItem, ServiceTimelineAdapter.ViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemServiceTimelineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,12 +20,17 @@ class ServiceTimelineAdapter : ListAdapter<ServiceTimelineItem, ServiceTimelineA
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), isLast = position == itemCount - 1)
+        holder.bind(getItem(position), isLast = position == itemCount - 1, onEditClick, onDeleteClick)
     }
 
     class ViewHolder(private val binding: ItemServiceTimelineBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ServiceTimelineItem, isLast: Boolean) {
+        fun bind(
+            item: ServiceTimelineItem, 
+            isLast: Boolean, 
+            onEdit: (ServiceTimelineItem) -> Unit, 
+            onDelete: (ServiceTimelineItem) -> Unit
+        ) {
             binding.timelineIcon.setImageResource(item.iconRes)
             binding.timelineTitle.text = item.title
             binding.timelineSubtitle.text = item.workshopName
@@ -30,6 +38,12 @@ class ServiceTimelineAdapter : ListAdapter<ServiceTimelineItem, ServiceTimelineA
             binding.timelineDateDistance.text = item.dateDistanceLabel
             binding.timelineCost.text = item.totalCostLabel
             binding.timelineLine.visibility = if (isLast) View.INVISIBLE else View.VISIBLE
+            
+            binding.root.setOnClickListener { onEdit(item) }
+            binding.root.setOnLongClickListener { 
+                onDelete(item)
+                true
+            }
         }
     }
 

@@ -22,6 +22,8 @@ import com.example.kendaraanbp1.data.model.ServiceTimelineItem
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.kendaraanbp1.util.Formatters.toRupiah
+import com.google.android.material.snackbar.Snackbar
 import com.example.kendaraanbp1.databinding.FragmentServiceHistoryBinding
 import com.example.kendaraanbp1.ui.util.BottomNavTab
 import com.example.kendaraanbp1.ui.util.applyBottomSystemBarMargin
@@ -29,6 +31,10 @@ import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setActiveTab
 import com.example.kendaraanbp1.ui.util.setEmptyState
 import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.example.kendaraanbp1.ui.addservice.AddServiceEntryFragment
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.navigation.fragment.findNavController
 
 class ServiceHistoryFragment : Fragment() {
 
@@ -60,14 +66,50 @@ class ServiceHistoryFragment : Fragment() {
         binding.bottomNavInclude.setupNavigation(findNavController())
 
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
-        binding.searchButton.setOnClickListener {
-            // TODO: show service search once implemented.
-        }
+        binding.searchButton.visibility = View.GONE // Hidden for MVP release
         binding.addServiceFab.setOnClickListener {
-            // TODO: show add-service entry sheet once implemented.
+            AddServiceEntryFragment().show(childFragmentManager, AddServiceEntryFragment.TAG)
         }
 
-        val adapter = ServiceTimelineAdapter()
+        val adapter = ServiceTimelineAdapter(
+            onEditClick = { item ->
+                val log = serviceViewModel.serviceLogs.value.data?.find { it.id == item.id }
+                if (log != null) {
+                    val fragment = AddServiceEntryFragment.newInstance(
+                        id = log.id,
+                        date = log.date,
+                        category = log.category,
+                        workshopName = log.workshopName,
+                        odometer = log.odometer,
+                        totalCost = log.totalCost,
+                        nextServiceDate = log.nextServiceDate,
+                        nextServiceOdometer = log.nextServiceOdometer
+                    )
+                    fragment.show(childFragmentManager, AddServiceEntryFragment.TAG)
+                }
+            },
+            onDeleteClick = { item ->
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Hapus Riwayat Servis")
+                    .setMessage("Apakah Anda yakin ingin menghapus catatan servis ini? Pengingat servis terkait juga akan dibatalkan.")
+                    .setPositiveButton("Hapus") { _, _ ->
+                        val log = serviceViewModel.serviceLogs.value.data?.find { it.id == item.id }
+                        if (log != null) {
+                            serviceViewModel.deleteLog(
+                                log = log,
+                                onSuccess = {
+                                    Snackbar.make(binding.root, "Catatan servis berhasil dihapus", Snackbar.LENGTH_SHORT).show()
+                                },
+                                onError = { msg ->
+                                    Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
+                                }
+                            )
+                        }
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
+            }
+        )
         binding.serviceTimelineList.layoutManager = LinearLayoutManager(requireContext())
         binding.serviceTimelineList.adapter = adapter
         
@@ -95,9 +137,29 @@ class ServiceHistoryFragment : Fragment() {
                 }
                 
                 launch {
+                    serviceViewModel.upcomingService.collect { svc ->
+                        if (svc != null) {
+                            binding.serviceNextTitle.text = svc.category
+                            binding.serviceNextDate.text =
+                                svc.nextServiceDate?.let { dateFormat.format(Date(it)) }
+                                    ?: getString(R.string.service_next_none_date)
+                            binding.serviceRemainingValue.text =
+                                svc.nextServiceOdometer?.let {
+                                    com.example.kendaraanbp1.util.VehicleStats.formatThousands(it)
+                                } ?: "–"
+                        } else {
+                            binding.serviceNextTitle.text = getString(R.string.service_next_none_title)
+                            binding.serviceNextDate.text = getString(R.string.service_next_none_date)
+                            binding.serviceRemainingValue.text = "–"
+                        }
+                    }
+                }
+
+                launch {
                     serviceViewModel.serviceLogs.collect { resource ->
                         when (resource) {
                             is Resource.Success -> {
+                                binding.loadingIndicator.visibility = View.GONE
                                 val logs = resource.data ?: emptyList()
                                 val items = logs.map { log ->
                                     ServiceTimelineItem(
@@ -106,7 +168,7 @@ class ServiceHistoryFragment : Fragment() {
                                         workshopName = log.workshopName,
                                         statusLabel = getString(R.string.service_status_done),
                                         dateDistanceLabel = "${dateFormat.format(Date(log.date))} • ${log.odometer} km",
-                                        totalCostLabel = "Rp ${log.totalCost.toLong()}",
+                                        totalCostLabel = log.totalCost.toRupiah(),
                                         iconRes = R.drawable.ic_wrench,
                                     )
                                 }
@@ -114,9 +176,14 @@ class ServiceHistoryFragment : Fragment() {
                                 binding.serviceEmptyState.setEmptyState(items.isEmpty(), binding.serviceTimelineList)
                             }
                             is Resource.Error -> {
+                                binding.loadingIndicator.visibility = View.GONE
                                 binding.serviceEmptyState.setEmptyState(true, binding.serviceTimelineList)
+                                Snackbar.make(binding.root, "Gagal memuat data riwayat servis", Snackbar.LENGTH_SHORT).show()
                             }
-                            else -> {}
+                            is Resource.Loading -> {
+                                binding.loadingIndicator.visibility = View.VISIBLE
+                                binding.serviceEmptyState.setEmptyState(false, binding.serviceTimelineList)
+                            }
                         }
                     }
                 }

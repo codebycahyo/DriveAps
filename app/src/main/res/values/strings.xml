@@ -26,7 +26,7 @@
 
     <!-- Onboarding - Selamat Datang -->
     <string name="onboarding_welcome_tag">Pantau Kendaraan Anda</string>
-    <string name="onboarding_welcome_headline">Selamat Datang di\nKendaraanku</string>
+    <string name="onboarding_welcome_headline">Selamat Datang di\nDriveTrack</string>
     <string name="onboarding_welcome_body">Solusi cerdas untuk mencatat pengeluaran,\nservis, dan dokumen kendaraan Anda secara\noffline.</string>
     <string name="onboarding_cta_next">Lanjut</string>
     <string name="cd_hero_illustration">Ilustrasi kendaraan</string>
@@ -69,6 +69,7 @@
     <string name="home_expense_label">Total Pengeluaran Bulan Ini</string>
     <string name="home_expense_amount">Rp 1.250.000</string>
     <string name="home_vehicle_name">Toyota Avanza • B 1234 ABC</string>
+    <string name="home_no_vehicle">Belum ada kendaraan — tap untuk tambah</string>
     <string name="home_reminder_badge">7 Hari lagi: Pajak STNK</string>
     <string name="quick_action_fuel">Isi BBM</string>
     <string name="quick_action_service">Servis</string>
@@ -168,12 +169,16 @@
     <string name="service_label_date_distance">Tanggal &amp; Jarak</string>
     <string name="service_label_total_cost">Total Biaya</string>
     <string name="cd_add_service">Tambah servis</string>
+    <string name="service_next_none_title">Belum ada jadwal servis</string>
+    <string name="service_next_none_date">Belum dijadwalkan</string>
 
     <!-- Profile & Settings -->
-    <string name="profile_title">Kendaraanku</string>
+    <string name="profile_title">DriveTrack</string>
     <string name="cd_settings">Pengaturan</string>
     <string name="profile_name">Budi Santoso</string>
     <string name="profile_vehicle_count">2 Kendaraan</string>
+    <string name="profile_vehicle_count_fmt">%1$d Kendaraan</string>
+    <string name="reports_hint">Laporan bisa diekspor via Profil › Ekspor Laporan</string>
     <string name="cd_avatar">Foto profil</string>
     <string name="section_account">Akun</string>
     <string name="row_edit_profile">Edit Profil</string>

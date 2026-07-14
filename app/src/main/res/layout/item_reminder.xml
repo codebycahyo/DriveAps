@@ -54,6 +54,8 @@
                 android:id="@+id/reminderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.DriveTrack.ReminderTitle"
                 app:lineHeightSp="20"
                 tools:text="Pajak STNK Tahunan" />
@@ -62,6 +64,8 @@
                 android:id="@+id/reminderSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:textAppearance="@style/TextAppearance.DriveTrack.ReminderSubtitle"
                 app:lineHeightSp="20"
                 tools:text="Jatuh tempo dalam 7 hari" />

@@ -21,7 +21,9 @@ import com.example.kendaraanbp1.data.model.FuelLogItem
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.kendaraanbp1.util.Formatters.toRupiah
 import com.example.kendaraanbp1.databinding.FragmentFuelHistoryBinding
+import com.google.android.material.snackbar.Snackbar
 import com.example.kendaraanbp1.ui.addfuel.AddFuelEntryFragment
 import com.example.kendaraanbp1.ui.util.BottomNavTab
 import com.example.kendaraanbp1.ui.util.VerticalSpaceItemDecoration
@@ -31,6 +33,7 @@ import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setActiveTab
 import com.example.kendaraanbp1.ui.util.setEmptyState
 import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.navigation.fragment.findNavController
 
 class FuelHistoryFragment : Fragment() {
@@ -72,7 +75,43 @@ class FuelHistoryFragment : Fragment() {
             AddFuelEntryFragment().show(childFragmentManager, AddFuelEntryFragment.TAG)
         }
 
-        val adapter = FuelLogAdapter()
+        val adapter = FuelLogAdapter(
+            onEditClick = { item ->
+                val log = fuelViewModel.fuelLogs.value.data?.find { it.id == item.id }
+                if (log != null) {
+                    val fragment = AddFuelEntryFragment.newInstance(
+                        id = log.id,
+                        date = log.date,
+                        liters = log.liters,
+                        pricePerLiter = log.pricePerLiter,
+                        odometer = log.odometer,
+                        stationName = log.stationName
+                    )
+                    fragment.show(childFragmentManager, AddFuelEntryFragment.TAG)
+                }
+            },
+            onDeleteClick = { item ->
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Hapus Riwayat BBM")
+                    .setMessage("Apakah Anda yakin ingin menghapus catatan pengisian BBM ini?")
+                    .setPositiveButton("Hapus") { _, _ ->
+                        val log = fuelViewModel.fuelLogs.value.data?.find { it.id == item.id }
+                        if (log != null) {
+                            fuelViewModel.deleteFuelLog(
+                                log = log,
+                                onSuccess = {
+                                    Snackbar.make(binding.root, "Catatan BBM berhasil dihapus", Snackbar.LENGTH_SHORT).show()
+                                },
+                                onError = { msg ->
+                                    Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
+                                }
+                            )
+                        }
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
+            }
+        )
         binding.fuelLogList.layoutManager = LinearLayoutManager(requireContext())
         binding.fuelLogList.adapter = adapter
         binding.fuelLogList.addItemDecoration(
@@ -106,13 +145,14 @@ class FuelHistoryFragment : Fragment() {
                     fuelViewModel.fuelLogs.collect { resource ->
                         when (resource) {
                             is Resource.Success -> {
+                                binding.loadingIndicator.visibility = View.GONE
                                 val logs = resource.data ?: emptyList()
                                 val items = logs.map { log ->
                                     FuelLogItem(
                                         id = log.id,
                                         stationName = log.stationName,
                                         date = dateFormat.format(Date(log.date)),
-                                        amountLabel = "Rp ${log.totalCost.toLong()}",
+                                        amountLabel = log.totalCost.toRupiah(),
                                         litersLabel = "${log.liters} L",
                                         odometerLabel = "Odometer: ${log.odometer} km"
                                     )
@@ -121,9 +161,14 @@ class FuelHistoryFragment : Fragment() {
                                 binding.fuelLogEmptyState.setEmptyState(items.isEmpty(), binding.fuelLogList)
                             }
                             is Resource.Error -> {
+                                binding.loadingIndicator.visibility = View.GONE
                                 binding.fuelLogEmptyState.setEmptyState(true, binding.fuelLogList)
+                                Snackbar.make(binding.root, "Gagal memuat data riwayat pengisian BBM", Snackbar.LENGTH_SHORT).show()
                             }
-                            else -> {}
+                            is Resource.Loading -> {
+                                binding.loadingIndicator.visibility = View.VISIBLE
+                                binding.fuelLogEmptyState.setEmptyState(false, binding.fuelLogList)
+                            }
                         }
                     }
                 }
@@ -131,8 +176,14 @@ class FuelHistoryFragment : Fragment() {
                 launch {
                     fuelViewModel.totalExpense.collect { resource ->
                         if (resource is Resource.Success) {
-                            binding.totalExpenseValue.text = "Rp ${resource.data?.toLong() ?: 0}"
+                            binding.totalExpenseValue.text = resource.data?.toRupiah()
                         }
+                    }
+                }
+
+                launch {
+                    fuelViewModel.efficiency.collect { value ->
+                        binding.efficiencyValue.text = value
                     }
                 }
             }

@@ -18,10 +18,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.kendaraanbp1.util.Formatters.toRupiah
+import com.example.kendaraanbp1.util.VehicleStats
 
 class HomeViewModel(
     private val fuelRepo: FuelRepository,
@@ -53,7 +56,7 @@ class HomeViewModel(
                     id = log.id,
                     title = log.stationName,
                     subtitle = dateFormat.format(Date(log.date)),
-                    amountLabel = "Rp ${log.totalCost.toLong()}",
+                    amountLabel = log.totalCost.toRupiah(),
                     iconRes = R.drawable.ic_fuel
                 )
             }
@@ -63,7 +66,7 @@ class HomeViewModel(
                     id = log.id + 10000, // Offset to avoid ID collision
                     title = log.workshopName,
                     subtitle = dateFormat.format(Date(log.date)),
-                    amountLabel = "Rp ${log.totalCost.toLong()}",
+                    amountLabel = log.totalCost.toRupiah(),
                     iconRes = R.drawable.ic_wrench
                 )
             }
@@ -119,4 +122,36 @@ class HomeViewModel(
             Resource.Success(allItems) as Resource<List<ReminderItem>>
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading())
+
+    /** Total pengeluaran (BBM + servis) bulan kalender berjalan, sudah diformat Rupiah. */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val monthlyExpense: StateFlow<String> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf(0.0.toRupiah())
+
+        val monthStart = VehicleStats.startOfCurrentMonth()
+        combine(
+            fuelRepo.getLogsByVehicle(id),
+            serviceRepo.getLogsByVehicle(id)
+        ) { fuelRes, serviceRes ->
+            val fuelSum = (fuelRes.data ?: emptyList())
+                .filter { it.date >= monthStart }.sumOf { it.totalCost }
+            val serviceSum = (serviceRes.data ?: emptyList())
+                .filter { it.date >= monthStart }.sumOf { it.totalCost }
+            (fuelSum + serviceSum).toRupiah()
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, 0.0.toRupiah())
+
+    /** Efisiensi BBM (km/L) dari data pengisian, atau "–" bila data belum cukup. */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val efficiency: StateFlow<String> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf("–")
+        fuelRepo.getLogsByVehicle(id).map { res ->
+            VehicleStats.formatKmPerL(VehicleStats.fuelEconomyKmPerL(res.data ?: emptyList()))
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, "–")
+
+    /** Pengingat terdekat untuk badge di hero card; null bila tidak ada. */
+    val topReminder: StateFlow<ReminderItem?> = reminders.map { res ->
+        (res as? Resource.Success)?.data?.firstOrNull()
+    }.stateIn(viewModelScope, SharingStarted.Lazily, null)
 }

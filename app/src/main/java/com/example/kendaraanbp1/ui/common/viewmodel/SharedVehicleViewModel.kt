@@ -43,7 +43,7 @@ class SharedVehicleViewModel(private val vehicleRepository: VehicleRepository) :
         }
     }
 
-    fun selectVehicle(id: Long) {
+    fun selectVehicle(id: Long?) {
         _selectedVehicleId.value = id
     }
 }

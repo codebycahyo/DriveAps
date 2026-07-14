@@ -130,6 +130,7 @@
                         app:tint="@color/text_placeholder" />
 
                     <com.example.kendaraanbp1.ui.widget.DTextView
+                        android:id="@+id/profileVehicleCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_8"

@@ -27,6 +27,12 @@ import com.example.kendaraanbp1.databinding.FragmentVehicleDocumentsBinding
 import com.example.kendaraanbp1.ui.util.VerticalSpaceItemDecoration
 import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setEmptyState
+import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.example.kendaraanbp1.ui.adddocument.AddDocumentFragment
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import androidx.navigation.fragment.findNavController
 
 class VehicleDocumentsFragment : Fragment() {
 
@@ -54,14 +60,51 @@ class VehicleDocumentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
-        binding.searchButton.setOnClickListener {
-            // TODO: show document search once implemented.
-        }
+        binding.searchButton.visibility = View.GONE // Hidden for MVP release
         binding.addDocumentFab.setOnClickListener {
-            // TODO: show add-document flow once implemented.
+            AddDocumentFragment().show(childFragmentManager, AddDocumentFragment.TAG)
         }
 
-        val adapter = DocumentAdapter()
+        val adapter = DocumentAdapter(
+            onEditClick = { item ->
+                val doc = documentViewModel.documents.value.data?.find { it.id == item.id }
+                if (doc != null) {
+                    val issued = doc.issuedDate ?: System.currentTimeMillis()
+                    val daysValid = if (doc.expiryDate != null) {
+                        ((doc.expiryDate - issued) / (1000L * 60 * 60 * 24)).toInt()
+                    } else 0
+                    val fragment = AddDocumentFragment.newInstance(
+                        id = doc.id,
+                        type = doc.documentType,
+                        number = doc.documentNumber ?: "",
+                        validDays = daysValid,
+                        issuedDate = issued
+                    )
+                    fragment.show(childFragmentManager, AddDocumentFragment.TAG)
+                }
+            },
+            onDeleteClick = { item ->
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("Hapus Dokumen")
+                    .setMessage("Apakah Anda yakin ingin menghapus dokumen ini? Pengingat dokumen terkait juga akan dibatalkan.")
+                    .setPositiveButton("Hapus") { _, _ ->
+                        val doc = documentViewModel.documents.value.data?.find { it.id == item.id }
+                        if (doc != null) {
+                            documentViewModel.deleteDocument(
+                                doc = doc,
+                                onSuccess = {
+                                    Snackbar.make(binding.root, "Dokumen berhasil dihapus", Snackbar.LENGTH_SHORT).show()
+                                },
+                                onError = { msg ->
+                                    Snackbar.make(binding.root, msg, Snackbar.LENGTH_SHORT).show()
+                                }
+                            )
+                        }
+                    }
+                    .setNegativeButton("Batal", null)
+                    .show()
+            }
+        )
         binding.documentList.layoutManager = LinearLayoutManager(requireContext())
         binding.documentList.adapter = adapter
         binding.documentList.addItemDecoration(

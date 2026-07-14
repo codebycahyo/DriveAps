@@ -11,7 +11,10 @@ import com.example.kendaraanbp1.data.model.DocumentItem
 import com.example.kendaraanbp1.data.model.DocumentStatus
 import com.example.kendaraanbp1.databinding.ItemDocumentBinding
 
-class DocumentAdapter : ListAdapter<DocumentItem, DocumentAdapter.ViewHolder>(DIFF) {
+class DocumentAdapter(
+    private val onEditClick: (DocumentItem) -> Unit,
+    private val onDeleteClick: (DocumentItem) -> Unit
+) : ListAdapter<DocumentItem, DocumentAdapter.ViewHolder>(DIFF) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemDocumentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,11 +22,15 @@ class DocumentAdapter : ListAdapter<DocumentItem, DocumentAdapter.ViewHolder>(DI
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onEditClick, onDeleteClick)
     }
 
     class ViewHolder(private val binding: ItemDocumentBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: DocumentItem) {
+        fun bind(
+            item: DocumentItem,
+            onEdit: (DocumentItem) -> Unit,
+            onDelete: (DocumentItem) -> Unit
+        ) {
             val context = binding.root.context
             binding.docTitle.text = item.title
             binding.docSubtitle.text = item.subtitle
@@ -38,6 +45,12 @@ class DocumentAdapter : ListAdapter<DocumentItem, DocumentAdapter.ViewHolder>(DI
             }
             binding.docStatusBadge.backgroundTintList = ContextCompat.getColorStateList(context, bgRes)
             binding.docStatusBadge.setTextColor(ContextCompat.getColor(context, textRes))
+            
+            binding.root.setOnClickListener { onEdit(item) }
+            binding.root.setOnLongClickListener { 
+                onDelete(item)
+                true
+            }
         }
     }
 

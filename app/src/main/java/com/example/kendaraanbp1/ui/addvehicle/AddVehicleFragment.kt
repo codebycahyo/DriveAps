@@ -70,6 +70,9 @@ class AddVehicleFragment : Fragment() {
                 onSuccess = { id ->
                     sharedViewModel.selectVehicle(id)
                     findNavController().popBackStack()
+                },
+                onError = { errorMessage ->
+                    Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
                 }
             )
         }

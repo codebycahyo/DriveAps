@@ -77,6 +77,7 @@
                             android:orientation="horizontal">
 
                             <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:id="@+id/efficiencyValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/fuel_history_efficiency_value"

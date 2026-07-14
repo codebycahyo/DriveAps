@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface_white"
+    android:orientation="vertical"
+    tools:context=".ui.editvehicle.EditVehicleFragment">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@color/surface_header"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/spacing_8"
+        android:paddingEnd="@dimen/spacing_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/icon_button_min_size"
+            android:layout_height="@dimen/icon_button_min_size"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_gravity="center"
+                android:contentDescription="@string/cd_back"
+                android:src="@drawable/ic_arrow_left"
+                app:tint="@color/text_secondary" />
+        </FrameLayout>
+
+        <com.example.kendaraanbp1.ui.widget.DTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:layout_weight="1"
+            android:text="Edit Kendaraan"
+            android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+            app:lineHeightSp="24" />
+            
+        <FrameLayout
+            android:id="@+id/deleteButton"
+            android:layout_width="@dimen/icon_button_min_size"
+            android:layout_height="@dimen/icon_button_min_size"
+            android:background="?attr/selectableItemBackgroundBorderless">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_gravity="center"
+                android:contentDescription="Hapus Kendaraan"
+                android:src="@drawable/ic_trash"
+                app:tint="@color/status_error_strong" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_16"
+            android:paddingTop="@dimen/spacing_24"
+            android:paddingBottom="@dimen/spacing_24">
+
+            <include layout="@layout/layout_step_progress" />
+
+            <!-- Form card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:orientation="vertical">
+
+                <!-- Photo upload -->
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_vehicle_photo_label"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                    app:lineHeightSp="24" />
+
+                <LinearLayout
+                    android:id="@+id/photoUploadArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="192dp"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:background="@drawable/bg_photo_upload"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/shape_pill_solid"
+                            android:backgroundTint="@color/brand_ink">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_medium"
+                                android:layout_height="@dimen/icon_size_medium"
+                                android:layout_gravity="center"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_camera" />
+                        </FrameLayout>
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_16"
+                            android:text="@string/add_vehicle_photo_hint"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                            app:lineHeightSp="20" />
+                </LinearLayout>
+
+                <!-- Vehicle type -->
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/add_vehicle_type_label"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                    app:lineHeightSp="24" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_8"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/vehicleTypeCar"
+                        android:layout_width="0dp"
+                        android:layout_height="86dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_vehicle_type_selected"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:baselineAligned="false">
+
+                        <ImageView
+                            android:id="@+id/vehicleTypeCarIcon"
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_car"
+                            app:tint="@color/white" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:id="@+id/vehicleTypeCarLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/vehicle_type_car"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                            android:textColor="@color/white"
+                            app:lineHeightSp="24" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/vehicleTypeMotorcycle"
+                        android:layout_width="0dp"
+                        android:layout_height="86dp"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_vehicle_type_unselected"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/vehicleTypeMotorcycleIcon"
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:contentDescription="@null"
+                            android:src="@drawable/ic_bike"
+                            app:tint="@color/text_secondary" />
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:id="@+id/vehicleTypeMotorcycleLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_4"
+                            android:text="@string/vehicle_type_motorcycle"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                            android:textColor="@color/text_secondary"
+                            app:lineHeightSp="24" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Brand -->
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_24"
+                    android:text="@string/add_vehicle_label_brand"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                    android:textColor="@color/text_primary"
+                    app:lineHeightSp="20" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.DriveTrack.TextInputLayout.Plain"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="@dimen/spacing_8">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBrand"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:drawableEnd="@drawable/ic_car"
+                        android:drawableTint="@color/border_default"
+                        android:hint="@string/add_vehicle_hint_brand"
+                        android:inputType="text"
+                        android:paddingHorizontal="@dimen/spacing_16"
+                        android:textAppearance="@style/TextAppearance.DriveTrack.InputText16"
+                        android:textColorHint="@color/icon_secondary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Model -->
+                <com.example.kendaraanbp1.ui.widget.DTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:text="@string/add_vehicle_label_model"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                    android:textColor="@color/text_primary"
+                    app:lineHeightSp="20" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.DriveTrack.TextInputLayout.Plain"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="@dimen/spacing_8">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/add_vehicle_hint_model"
+                        android:inputType="text"
+                        android:paddingHorizontal="@dimen/spacing_16"
+                        android:textAppearance="@style/TextAppearance.DriveTrack.InputText16"
+                        android:textColorHint="@color/icon_secondary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Plate & year -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:baselineAligned="false">
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_vehicle_label_plate"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                            android:textColor="@color/text_primary"
+                            app:lineHeightSp="20" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.DriveTrack.TextInputLayout.Plain"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="@dimen/spacing_8">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPlate"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/add_vehicle_hint_plate"
+                                android:inputType="textCapCharacters"
+                                android:paddingHorizontal="@dimen/spacing_16"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.PlateInput"
+                                android:textColorHint="@color/icon_secondary" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_16"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/add_vehicle_label_year"
+                            android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+                            android:textColor="@color/text_primary"
+                            app:lineHeightSp="20" />
+
+                        <FrameLayout
+                            android:id="@+id/yearSelector"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="@dimen/spacing_8"
+                            android:background="@drawable/bg_input_field_plain">
+
+                            <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|start"
+                                android:layout_marginStart="@dimen/spacing_16"
+                                android:text="@string/add_vehicle_hint_year"
+                                android:textAppearance="@style/TextAppearance.DriveTrack.Body16"
+                                app:lineHeightSp="24" />
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_small"
+                                android:layout_height="@dimen/icon_size_small"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_marginEnd="@dimen/spacing_16"
+                                android:contentDescription="@null"
+                                android:src="@drawable/ic_chevron_down"
+                                app:tint="@color/text_placeholder" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Action buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_button_outline_pill"
+                    android:letterSpacing="0"
+                    android:text="@string/action_cancel"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/nextButton"
+                    style="@style/Widget.DriveTrack.Button.Primary"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/spacing_16"
+                    android:layout_weight="1.61"
+                    android:text="@string/action_next"
+                    app:cornerRadius="@dimen/radius_pill" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

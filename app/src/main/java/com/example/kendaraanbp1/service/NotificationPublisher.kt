@@ -13,7 +13,7 @@ class NotificationPublisher : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, 0)
-        val title = intent.getStringExtra(EXTRA_TITLE) ?: "Peringatan KendaraanKu"
+        val title = intent.getStringExtra(EXTRA_TITLE) ?: "Peringatan DriveTrack"
         val message = intent.getStringExtra(EXTRA_MESSAGE) ?: "Ada pengingat untuk Anda."
 
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -44,6 +44,6 @@ class NotificationPublisher : BroadcastReceiver() {
         const val EXTRA_NOTIFICATION_ID = "notification_id"
         const val EXTRA_TITLE = "title"
         const val EXTRA_MESSAGE = "message"
-        const val CHANNEL_ID = "kendaraanku_reminders"
+        const val CHANNEL_ID = "drivetrack_reminders"
     }
 }

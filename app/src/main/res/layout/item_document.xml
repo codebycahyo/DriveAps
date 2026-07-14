@@ -36,6 +36,8 @@
             android:id="@+id/docTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.DriveTrack.CardHeading"
             app:lineHeightSp="20"
             tools:text="STNK" />

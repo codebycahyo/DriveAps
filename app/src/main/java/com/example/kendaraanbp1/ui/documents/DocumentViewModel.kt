@@ -31,7 +31,11 @@ class DocumentViewModel(
         documentRepo.getDocumentsByVehicle(id)
     }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading())
 
-    fun addOrUpdate(doc: VehicleDocumentEntity) {
+    fun addOrUpdate(
+        doc: VehicleDocumentEntity,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         viewModelScope.launch {
             if (doc.id == 0L) {
                 val resource = documentRepo.insertDocument(doc)
@@ -45,6 +49,9 @@ class DocumentViewModel(
                             message = "Dokumen ${doc.documentType} akan segera berakhir."
                         )
                     }
+                    onSuccess()
+                } else if (resource is Resource.Error) {
+                    onError(resource.message ?: "Gagal")
                 }
             } else {
                 val resource = documentRepo.updateDocument(doc)
@@ -59,16 +66,26 @@ class DocumentViewModel(
                     } ?: run {
                         notificationScheduler.cancelDocumentNotifs(doc.id)
                     }
+                    onSuccess()
+                } else if (resource is Resource.Error) {
+                    onError(resource.message ?: "Gagal")
                 }
             }
         }
     }
 
-    fun deleteDocument(doc: VehicleDocumentEntity) {
+    fun deleteDocument(
+        doc: VehicleDocumentEntity,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
         viewModelScope.launch {
             val resource = documentRepo.deleteDocument(doc)
             if (resource is Resource.Success) {
                 notificationScheduler.cancelDocumentNotifs(doc.id)
+                onSuccess()
+            } else if (resource is Resource.Error) {
+                onError(resource.message ?: "Gagal")
             }
         }
     }

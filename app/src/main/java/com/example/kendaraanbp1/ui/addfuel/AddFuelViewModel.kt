@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.kendaraanbp1.data.local.entity.FuelLogEntity
 import com.example.kendaraanbp1.data.repository.FuelRepository
+import com.example.kendaraanbp1.data.repository.Resource
 import kotlinx.coroutines.launch
 
 class AddFuelViewModel(
@@ -16,7 +17,8 @@ class AddFuelViewModel(
         pricePerLiter: Double,
         odometer: Int,
         stationName: String,
-        onSuccess: () -> Unit
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
     ) {
         val totalCost = liters * pricePerLiter
         val fuelLog = FuelLogEntity(
@@ -30,8 +32,45 @@ class AddFuelViewModel(
             receiptPhotoPath = null
         )
         viewModelScope.launch {
-            repository.insertLog(fuelLog)
-            onSuccess()
+            val resource = repository.insertLog(fuelLog)
+            if (resource is Resource.Success) {
+                onSuccess()
+            } else if (resource is Resource.Error) {
+                onError(resource.message ?: "Terjadi kesalahan tidak diketahui")
+            }
+        }
+    }
+
+    fun updateFuelEntry(
+        id: Long,
+        vehicleId: Long,
+        originalDate: Long,
+        liters: Double,
+        pricePerLiter: Double,
+        odometer: Int,
+        stationName: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        val totalCost = liters * pricePerLiter
+        val fuelLog = FuelLogEntity(
+            id = id,
+            vehicleId = vehicleId,
+            date = originalDate,
+            liters = liters,
+            pricePerLiter = pricePerLiter,
+            totalCost = totalCost,
+            odometer = odometer,
+            stationName = stationName,
+            receiptPhotoPath = null
+        )
+        viewModelScope.launch {
+            val resource = repository.updateLog(fuelLog)
+            if (resource is Resource.Success) {
+                onSuccess()
+            } else if (resource is Resource.Error) {
+                onError(resource.message ?: "Terjadi kesalahan tidak diketahui")
+            }
         }
     }
 }

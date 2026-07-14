@@ -106,7 +106,16 @@
         <action
             android:id="@+id/action_vehicleDetailFragment_to_serviceHistoryFragment"
             app:destination="@id/serviceHistoryFragment" />
+        <action
+            android:id="@+id/action_vehicleDetailFragment_to_editVehicleFragment"
+            app:destination="@id/editVehicleFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/editVehicleFragment"
+        android:name="com.example.kendaraanbp1.ui.editvehicle.EditVehicleFragment"
+        android:label="EditVehicleFragment"
+        tools:layout="@layout/fragment_edit_vehicle" />
 
     <fragment
         android:id="@+id/fuelHistoryFragment"

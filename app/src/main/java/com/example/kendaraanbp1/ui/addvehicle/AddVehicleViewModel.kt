@@ -17,7 +17,8 @@ class AddVehicleViewModel(
         model: String,
         plateNumber: String,
         year: Int,
-        onSuccess: (Long) -> Unit
+        onSuccess: (Long) -> Unit,
+        onError: (String) -> Unit
     ) {
         val vehicle = VehicleEntity(
             vehicleType = type,
@@ -33,6 +34,8 @@ class AddVehicleViewModel(
                 resource.data?.let { id ->
                     onSuccess(id)
                 }
+            } else if (resource is Resource.Error) {
+                onError(resource.message ?: "Terjadi kesalahan tidak diketahui")
             }
         }
     }

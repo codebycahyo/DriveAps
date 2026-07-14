@@ -19,7 +19,8 @@ private val SQLITE_HEADER = byteArrayOf(
 object BackupRestoreHelper {
 
     private const val DB_NAME = "kendaraanku_database"
-    private const val BACKUP_PREFIX = "kendaraanku_backup_"
+    private const val BACKUP_PREFIX = "drivetrack_backup_"
+    private const val OLD_BACKUP_PREFIX = "kendaraanku_backup_"
     private const val BACKUP_SUFFIX = ".db"
 
     fun getBackupDirectory(context: Context): File? {
@@ -29,7 +30,7 @@ object BackupRestoreHelper {
     fun getBackupFiles(context: Context): List<File> {
         val dir = getBackupDirectory(context) ?: return emptyList()
         return dir.listFiles { _, name ->
-            name.startsWith(BACKUP_PREFIX) && name.endsWith(BACKUP_SUFFIX)
+            (name.startsWith(BACKUP_PREFIX) || name.startsWith(OLD_BACKUP_PREFIX)) && name.endsWith(BACKUP_SUFFIX)
         }?.sortedByDescending { it.lastModified() } ?: emptyList()
     }
 
@@ -81,9 +82,10 @@ object BackupRestoreHelper {
             copyFile(backupFile, dbFile)
             
             // Overwrite or delete WAL and SHM to prevent corruption
-            val timestamp = backupFile.name.substringAfter(BACKUP_PREFIX).substringBefore(BACKUP_SUFFIX)
+            val prefix = if (backupFile.name.startsWith(BACKUP_PREFIX)) BACKUP_PREFIX else OLD_BACKUP_PREFIX
+            val timestamp = backupFile.name.substringAfter(prefix).substringBefore(BACKUP_SUFFIX)
             
-            val backupWal = File(backupFile.parentFile, "$BACKUP_PREFIX$timestamp-wal")
+            val backupWal = File(backupFile.parentFile, "$prefix$timestamp-wal")
             val dbWal = File(dbFile.path + "-wal")
             if (backupWal.exists()) {
                 copyFile(backupWal, dbWal)
@@ -91,7 +93,7 @@ object BackupRestoreHelper {
                 dbWal.delete()
             }
 
-            val backupShm = File(backupFile.parentFile, "$BACKUP_PREFIX$timestamp-shm")
+            val backupShm = File(backupFile.parentFile, "$prefix$timestamp-shm")
             val dbShm = File(dbFile.path + "-shm")
             if (backupShm.exists()) {
                 copyFile(backupShm, dbShm)
@@ -128,11 +130,12 @@ object BackupRestoreHelper {
         if (backupFile.exists()) {
             deleted = backupFile.delete()
         }
-        val timestamp = backupFile.name.substringAfter(BACKUP_PREFIX).substringBefore(BACKUP_SUFFIX)
-        val backupWal = File(backupFile.parentFile, "$BACKUP_PREFIX$timestamp-wal")
+        val prefix = if (backupFile.name.startsWith(BACKUP_PREFIX)) BACKUP_PREFIX else OLD_BACKUP_PREFIX
+        val timestamp = backupFile.name.substringAfter(prefix).substringBefore(BACKUP_SUFFIX)
+        val backupWal = File(backupFile.parentFile, "$prefix$timestamp-wal")
         if (backupWal.exists()) backupWal.delete()
         
-        val backupShm = File(backupFile.parentFile, "$BACKUP_PREFIX$timestamp-shm")
+        val backupShm = File(backupFile.parentFile, "$prefix$timestamp-shm")
         if (backupShm.exists()) backupShm.delete()
         
         return deleted

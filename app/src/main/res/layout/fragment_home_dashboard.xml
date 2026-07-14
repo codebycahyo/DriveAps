@@ -61,6 +61,7 @@
                                 app:lineHeightSp="20" />
 
                             <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:id="@+id/homeExpenseValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/spacing_4"
@@ -106,12 +107,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
-                            android:text="@string/home_vehicle_name"
+                            android:text="@string/home_no_vehicle"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelSemiboldWhite"
                             app:lineHeightSp="20" />
                     </LinearLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/reminderBadge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_16"
@@ -132,6 +134,7 @@
                             app:tint="@color/icon_warning_bright" />
 
                         <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:id="@+id/homeReminderBadgeText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_8"
@@ -241,6 +244,7 @@
                         android:orientation="horizontal">
 
                         <com.example.kendaraanbp1.ui.widget.DTextView
+                            android:id="@+id/homeEfficiencyValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/home_efficiency_value"

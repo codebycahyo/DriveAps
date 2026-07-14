@@ -62,6 +62,14 @@ fun LayoutBottomNavBinding.setupNavigation(navController: NavController) {
         navController.navigate(R.id.vehicleDetailFragment, null, navOptions)
     }
 
+    root.findViewById<android.view.View>(R.id.navReports).setOnClickListener {
+        android.widget.Toast.makeText(
+            it.context,
+            R.string.reports_hint,
+            android.widget.Toast.LENGTH_SHORT
+        ).show()
+    }
+
     root.findViewById<android.view.View>(R.id.navProfile).setOnClickListener {
         navController.navigate(R.id.profileFragment, null, navOptions)
     }

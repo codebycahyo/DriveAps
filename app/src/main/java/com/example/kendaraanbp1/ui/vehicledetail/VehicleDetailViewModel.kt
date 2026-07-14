@@ -17,15 +17,23 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.example.kendaraanbp1.util.Formatters.toRupiah
+import com.example.kendaraanbp1.util.VehicleStats
+
+import com.example.kendaraanbp1.data.repository.DocumentRepository
+import com.example.kendaraanbp1.service.NotificationScheduler
 
 class VehicleDetailViewModel(
     private val vehicleRepo: VehicleRepository,
     private val fuelRepo: FuelRepository,
-    private val serviceRepo: ServiceRepository
+    private val serviceRepo: ServiceRepository,
+    private val documentRepo: DocumentRepository,
+    private val notificationScheduler: NotificationScheduler
 ) : ViewModel() {
 
     private val _vehicleId = MutableStateFlow<Long?>(null)
@@ -79,7 +87,7 @@ class VehicleDetailViewModel(
                     title = log.category,
                     date = dateFormat.format(Date(log.date)),
                     subtitle = log.workshopName,
-                    amountLabel = "Rp ${log.totalCost.toLong()}",
+                    amountLabel = log.totalCost.toRupiah(),
                     iconRes = R.drawable.ic_wrench,
                     iconTintRes = R.color.status_success,
                     iconBgRes = R.color.surface_teal_light
@@ -89,4 +97,38 @@ class VehicleDetailViewModel(
             Resource.Success((fuelItems + serviceItems).take(15)) as Resource<List<VehicleActivityItem>>
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, Resource.Loading())
+
+    data class Stats(
+        val totalFuelLabel: String,
+        val serviceCountLabel: String,
+        val odometerLabel: String,
+    )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val vehicleStats: StateFlow<Stats> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf(Stats("0L", "0", "0 km"))
+
+        combine(
+            fuelRepo.getLogsByVehicle(id),
+            serviceRepo.getLogsByVehicle(id)
+        ) { fuelRes, serviceRes ->
+            val fuel = fuelRes.data ?: emptyList()
+            val service = serviceRes.data ?: emptyList()
+
+            val totalLiters = fuel.sumOf { it.liters }
+            val litersLabel = if (totalLiters % 1.0 == 0.0) {
+                totalLiters.toInt().toString()
+            } else {
+                String.format(Locale("in", "ID"), "%.1f", totalLiters)
+            }
+            val odo = VehicleStats.lastOdometer(fuel, service)
+
+            Stats(
+                totalFuelLabel = "${litersLabel}L",
+                serviceCountLabel = service.size.toString(),
+                odometerLabel = "${VehicleStats.formatThousands(odo)} km",
+            )
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, Stats("0L", "0", "0 km"))
+
 }

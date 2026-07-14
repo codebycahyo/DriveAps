@@ -33,7 +33,7 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
                 HomeViewModel(fuelRepo, serviceRepo, documentRepo) as T
             }
             modelClass.isAssignableFrom(VehicleDetailViewModel::class.java) -> {
-                VehicleDetailViewModel(vehicleRepo, fuelRepo, serviceRepo) as T
+                VehicleDetailViewModel(vehicleRepo, fuelRepo, serviceRepo, documentRepo, notificationScheduler) as T
             }
             modelClass.isAssignableFrom(FuelHistoryViewModel::class.java) -> {
                 FuelHistoryViewModel(fuelRepo) as T
@@ -47,8 +47,17 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
             modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.addvehicle.AddVehicleViewModel::class.java) -> {
                 com.example.kendaraanbp1.ui.addvehicle.AddVehicleViewModel(vehicleRepo) as T
             }
+            modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.editvehicle.EditVehicleViewModel::class.java) -> {
+                com.example.kendaraanbp1.ui.editvehicle.EditVehicleViewModel(vehicleRepo, serviceRepo, documentRepo, notificationScheduler) as T
+            }
             modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.addfuel.AddFuelViewModel::class.java) -> {
                 com.example.kendaraanbp1.ui.addfuel.AddFuelViewModel(fuelRepo) as T
+            }
+            modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.addservice.AddServiceViewModel::class.java) -> {
+                com.example.kendaraanbp1.ui.addservice.AddServiceViewModel(serviceRepo, notificationScheduler) as T
+            }
+            modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.adddocument.AddDocumentViewModel::class.java) -> {
+                com.example.kendaraanbp1.ui.adddocument.AddDocumentViewModel(documentRepo, notificationScheduler) as T
             }
             modelClass.isAssignableFrom(com.example.kendaraanbp1.ui.profile.ProfileViewModel::class.java) -> {
                 com.example.kendaraanbp1.ui.profile.ProfileViewModel(vehicleRepo, fuelRepo, serviceRepo) as T

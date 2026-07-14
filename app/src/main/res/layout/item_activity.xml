@@ -35,6 +35,8 @@
             android:id="@+id/activityTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.DriveTrack.ItemTitle"
             app:lineHeightSp="20"
             tools:text="Shell Super" />
@@ -43,6 +45,8 @@
             android:id="@+id/activitySubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textAppearance="@style/TextAppearance.DriveTrack.Body"
             app:lineHeightSp="20"
             tools:text="Kemarin, 14:20" />
