@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_16"
-                android:text="Berlaku Selama (Hari)"
+                android:text="Berlaku Sampai"
                 android:textAppearance="@style/TextAppearance.DriveTrack.Body"
                 android:textColor="@color/text_primary"
                 app:lineHeightSp="20" />
@@ -180,15 +180,17 @@
                     app:tint="@color/border_default" />
 
                 <EditText
-                    android:id="@+id/etDays"
+                    android:id="@+id/etExpiryDate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/spacing_40"
                     android:layout_marginEnd="@dimen/spacing_16"
                     android:background="@android:color/transparent"
-                    android:hint="Contoh: 365"
+                    android:hint="Pilih Tanggal"
+                    android:focusable="false"
+                    android:clickable="true"
                     android:importantForAutofill="no"
-                    android:inputType="number"
+                    android:inputType="none"
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.DriveTrack.InputText16"
                     android:textColorHint="@color/border_default" />

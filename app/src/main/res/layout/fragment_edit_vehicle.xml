@@ -78,7 +78,7 @@
             android:paddingTop="@dimen/spacing_24"
             android:paddingBottom="@dimen/spacing_24">
 
-            <include layout="@layout/layout_step_progress" />
+            <!-- include removed for edit vehicle -->
 
             <!-- Form card -->
             <LinearLayout
@@ -373,7 +373,7 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:layout_weight="1.61"
-                    android:text="@string/action_next"
+                    android:text="@string/action_save"
                     app:cornerRadius="@dimen/radius_pill" />
             </LinearLayout>
         </LinearLayout>

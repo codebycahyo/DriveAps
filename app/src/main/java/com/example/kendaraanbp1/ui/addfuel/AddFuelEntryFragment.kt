@@ -74,6 +74,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
             binding.etPrice.setText(arguments?.getDouble(ARG_PRICE).toString())
             binding.etOdometer.setText(arguments?.getInt(ARG_ODOMETER).toString())
             binding.etStation.setText(arguments?.getString(ARG_STATION))
+            binding.totalCostValue.setText(arguments?.getDouble(ARG_TOTAL_COST)?.toInt().toString())
             binding.saveButton.text = "Simpan Perubahan"
         }
 
@@ -82,15 +83,18 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
             val priceStr = binding.etPrice.text.toString()
             val odometerStr = binding.etOdometer.text.toString()
             val stationStr = binding.etStation.text.toString()
-            
-            if (litersStr.isEmpty() || priceStr.isEmpty() || odometerStr.isEmpty() || stationStr.isEmpty()) {
-                Toast.makeText(context, "Harap lengkapi semua data", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+            val totalCostStr = binding.totalCostValue.text.toString()
             
             val liters = litersStr.toDoubleOrNull() ?: 0.0
             val price = priceStr.toDoubleOrNull() ?: 0.0
             val odometer = odometerStr.toIntOrNull() ?: 0
+            val totalCost = totalCostStr.toDoubleOrNull() ?: 0.0
+            
+            if (totalCost == 0.0 && (liters == 0.0 || price == 0.0)) {
+                Toast.makeText(context, "Harap masukkan Total Biaya atau (Liter dan Harga)", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
             val vehicleId = sharedViewModel.selectedVehicleId.value
             
             if (vehicleId == null) {
@@ -106,6 +110,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
                     originalDate = originalDate,
                     liters = liters,
                     pricePerLiter = price,
+                    totalCost = totalCost,
                     odometer = odometer,
                     stationName = stationStr,
                     onSuccess = { dismiss() },
@@ -118,6 +123,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
                     vehicleId = vehicleId,
                     liters = liters,
                     pricePerLiter = price,
+                    totalCost = totalCost,
                     odometer = odometer,
                     stationName = stationStr,
                     onSuccess = { dismiss() },
@@ -140,6 +146,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
         private const val ARG_DATE = "arg_date"
         private const val ARG_LITERS = "arg_liters"
         private const val ARG_PRICE = "arg_price"
+        private const val ARG_TOTAL_COST = "arg_total_cost"
         private const val ARG_ODOMETER = "arg_odometer"
         private const val ARG_STATION = "arg_station"
 
@@ -148,6 +155,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
             date: Long,
             liters: Double,
             pricePerLiter: Double,
+            totalCost: Double,
             odometer: Int,
             stationName: String
         ): AddFuelEntryFragment {
@@ -157,6 +165,7 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
                 putLong(ARG_DATE, date)
                 putDouble(ARG_LITERS, liters)
                 putDouble(ARG_PRICE, pricePerLiter)
+                putDouble(ARG_TOTAL_COST, totalCost)
                 putInt(ARG_ODOMETER, odometer)
                 putString(ARG_STATION, stationName)
             }

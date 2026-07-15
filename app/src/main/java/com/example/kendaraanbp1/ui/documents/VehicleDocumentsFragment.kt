@@ -70,14 +70,12 @@ class VehicleDocumentsFragment : Fragment() {
                 val doc = documentViewModel.documents.value.data?.find { it.id == item.id }
                 if (doc != null) {
                     val issued = doc.issuedDate ?: System.currentTimeMillis()
-                    val daysValid = if (doc.expiryDate != null) {
-                        ((doc.expiryDate - issued) / (1000L * 60 * 60 * 24)).toInt()
-                    } else 0
+                    val expiry = doc.expiryDate ?: System.currentTimeMillis()
                     val fragment = AddDocumentFragment.newInstance(
                         id = doc.id,
                         type = doc.documentType,
                         number = doc.documentNumber ?: "",
-                        validDays = daysValid,
+                        expiryDate = expiry,
                         issuedDate = issued
                     )
                     fragment.show(childFragmentManager, AddDocumentFragment.TAG)

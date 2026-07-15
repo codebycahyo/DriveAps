@@ -84,6 +84,7 @@ class FuelHistoryFragment : Fragment() {
                         date = log.date,
                         liters = log.liters,
                         pricePerLiter = log.pricePerLiter,
+                        totalCost = log.totalCost,
                         odometer = log.odometer,
                         stationName = log.stationName
                     )

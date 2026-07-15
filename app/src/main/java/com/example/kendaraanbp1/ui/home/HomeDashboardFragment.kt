@@ -93,6 +93,12 @@ class HomeDashboardFragment : Fragment() {
             AddFuelEntryFragment().show(childFragmentManager, AddFuelEntryFragment.TAG)
         }
 
+        // "Scan Struk" membuka form BBM yang memuat tombol pindai struk (OCR),
+        // sebelumnya tombol ini mati / tidak melakukan apa pun.
+        binding.quickActionScan.root.setOnClickListener {
+            AddFuelEntryFragment().show(childFragmentManager, AddFuelEntryFragment.TAG)
+        }
+
         binding.quickActionDocument.root.setOnClickListener {
             findNavController().navigate(R.id.action_homeDashboardFragment_to_vehicleDocumentsFragment)
         }

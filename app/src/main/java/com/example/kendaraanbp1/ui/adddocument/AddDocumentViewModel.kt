@@ -17,19 +17,18 @@ class AddDocumentViewModel(
         vehicleId: Long,
         documentType: String,
         documentNumber: String,
-        validDays: Int,
+        expiryDateMillis: Long,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
         val currentTime = System.currentTimeMillis()
-        val expiryTime = currentTime + (validDays * 24L * 60L * 60L * 1000L)
         
         val document = VehicleDocumentEntity(
             vehicleId = vehicleId,
             documentType = documentType,
             documentNumber = documentNumber,
             issuedDate = currentTime,
-            expiryDate = expiryTime,
+            expiryDate = expiryDateMillis,
             photoPath = null
         )
         
@@ -57,12 +56,11 @@ class AddDocumentViewModel(
         vehicleId: Long,
         documentType: String,
         documentNumber: String,
-        validDays: Int,
+        expiryDateMillis: Long,
         originalIssuedDate: Long,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
-        val expiryTime = originalIssuedDate + (validDays * 24L * 60L * 60L * 1000L)
         
         val document = VehicleDocumentEntity(
             id = id,
@@ -70,7 +68,7 @@ class AddDocumentViewModel(
             documentType = documentType,
             documentNumber = documentNumber,
             issuedDate = originalIssuedDate,
-            expiryDate = expiryTime,
+            expiryDate = expiryDateMillis,
             photoPath = null
         )
         

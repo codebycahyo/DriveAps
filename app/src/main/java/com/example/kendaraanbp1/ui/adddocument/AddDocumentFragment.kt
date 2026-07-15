@@ -11,11 +11,18 @@ import com.example.kendaraanbp1.databinding.FragmentAddDocumentBinding
 import com.example.kendaraanbp1.ui.common.ExpandedBottomSheetDialogFragment
 import com.example.kendaraanbp1.ui.common.viewmodel.SharedVehicleViewModel
 import com.example.kendaraanbp1.ui.common.viewmodel.ViewModelFactory
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
 
     private var _binding: FragmentAddDocumentBinding? = null
     private val binding get() = _binding!!
+
+    private var selectedExpiryDate: Long? = null
+
 
     private val sharedViewModel: SharedVehicleViewModel by activityViewModels {
         ViewModelFactory(requireContext().applicationContext)
@@ -43,21 +50,39 @@ class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
         if (editId != -1L) {
             binding.etType.setText(arguments?.getString(ARG_TYPE))
             binding.etNumber.setText(arguments?.getString(ARG_NUMBER))
-            binding.etDays.setText(arguments?.getInt(ARG_DAYS).toString())
+            
+            val expiry = arguments?.getLong(ARG_EXPIRY_DATE) ?: 0L
+            if (expiry > 0) {
+                selectedExpiryDate = expiry
+                binding.etExpiryDate.setText(SimpleDateFormat("dd MMM yyyy", Locale("id", "ID")).format(Date(expiry)))
+            }
             binding.saveButton.text = "Simpan Perubahan"
+        }
+        
+        binding.etExpiryDate.setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Pilih Masa Berlaku")
+                .setSelection(selectedExpiryDate ?: MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+                
+            datePicker.addOnPositiveButtonClickListener { selection ->
+                selectedExpiryDate = selection
+                binding.etExpiryDate.setText(SimpleDateFormat("dd MMM yyyy", Locale("id", "ID")).format(Date(selection)))
+            }
+            
+            datePicker.show(childFragmentManager, "EXPIRY_DATE_PICKER")
         }
 
         binding.saveButton.setOnClickListener {
             val typeStr = binding.etType.text.toString().trim()
             val numberStr = binding.etNumber.text.toString().trim()
-            val daysStr = binding.etDays.text.toString().trim()
+            val expiryDateMillis = selectedExpiryDate
             
-            if (typeStr.isEmpty() || numberStr.isEmpty() || daysStr.isEmpty()) {
+            if (typeStr.isEmpty() || numberStr.isEmpty() || expiryDateMillis == null) {
                 Toast.makeText(context, "Harap lengkapi semua data", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
-            val days = daysStr.toIntOrNull() ?: 0
+
             val vehicleId = sharedViewModel.selectedVehicleId.value
             
             if (vehicleId == null) {
@@ -72,7 +97,7 @@ class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
                     vehicleId = vehicleId,
                     documentType = typeStr,
                     documentNumber = numberStr,
-                    validDays = days,
+                    expiryDateMillis = expiryDateMillis,
                     originalIssuedDate = originalIssuedDate,
                     onSuccess = { dismiss() },
                     onError = { errorMessage ->
@@ -84,7 +109,7 @@ class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
                     vehicleId = vehicleId,
                     documentType = typeStr,
                     documentNumber = numberStr,
-                    validDays = days,
+                    expiryDateMillis = expiryDateMillis,
                     onSuccess = { dismiss() },
                     onError = { errorMessage ->
                         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
@@ -104,14 +129,14 @@ class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
         private const val ARG_ID = "arg_id"
         private const val ARG_TYPE = "arg_type"
         private const val ARG_NUMBER = "arg_number"
-        private const val ARG_DAYS = "arg_days"
+        private const val ARG_EXPIRY_DATE = "arg_expiry_date"
         private const val ARG_ISSUED_DATE = "arg_issued_date"
 
         fun newInstance(
             id: Long,
             type: String,
             number: String,
-            validDays: Int,
+            expiryDate: Long,
             issuedDate: Long
         ): AddDocumentFragment {
             val fragment = AddDocumentFragment()
@@ -119,7 +144,7 @@ class AddDocumentFragment : ExpandedBottomSheetDialogFragment() {
                 putLong(ARG_ID, id)
                 putString(ARG_TYPE, type)
                 putString(ARG_NUMBER, number)
-                putInt(ARG_DAYS, validDays)
+                putLong(ARG_EXPIRY_DATE, expiryDate)
                 putLong(ARG_ISSUED_DATE, issuedDate)
             }
             fragment.arguments = args

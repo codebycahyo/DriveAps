@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- SCHEDULE_EXACT_ALARM: minta izin ke user saat runtime (kode sudah handle +
+         fallback ke setWindow bila ditolak). USE_EXACT_ALARM sengaja TIDAK dipakai
+         karena Google Play membatasinya hanya untuk app alarm/kalender dan bisa
+         menyebabkan penolakan untuk app pengingat kendaraan seperti ini. -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.CAMERA" />
 

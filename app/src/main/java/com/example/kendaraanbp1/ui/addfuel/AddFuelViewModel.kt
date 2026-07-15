@@ -15,18 +15,19 @@ class AddFuelViewModel(
         vehicleId: Long,
         liters: Double,
         pricePerLiter: Double,
+        totalCost: Double,
         odometer: Int,
         stationName: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
-        val totalCost = liters * pricePerLiter
+        val finalTotalCost = if (totalCost > 0.0) totalCost else (liters * pricePerLiter)
         val fuelLog = FuelLogEntity(
             vehicleId = vehicleId,
             date = System.currentTimeMillis(),
             liters = liters,
             pricePerLiter = pricePerLiter,
-            totalCost = totalCost,
+            totalCost = finalTotalCost,
             odometer = odometer,
             stationName = stationName,
             receiptPhotoPath = null
@@ -47,19 +48,20 @@ class AddFuelViewModel(
         originalDate: Long,
         liters: Double,
         pricePerLiter: Double,
+        totalCost: Double,
         odometer: Int,
         stationName: String,
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
-        val totalCost = liters * pricePerLiter
+        val finalTotalCost = if (totalCost > 0.0) totalCost else (liters * pricePerLiter)
         val fuelLog = FuelLogEntity(
             id = id,
             vehicleId = vehicleId,
             date = originalDate,
             liters = liters,
             pricePerLiter = pricePerLiter,
-            totalCost = totalCost,
+            totalCost = finalTotalCost,
             odometer = odometer,
             stationName = stationName,
             receiptPhotoPath = null

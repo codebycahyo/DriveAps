@@ -124,10 +124,10 @@
     <!-- Add Fuel Entry -->
     <string name="add_fuel_title">Tambah BBM</string>
     <string name="cd_close">Tutup</string>
-    <string name="add_fuel_label_liter">JUMLAH (LITER)</string>
+    <string name="add_fuel_label_liter">JUMLAH (LITER) (Opsional)</string>
     <string name="add_fuel_hint_liter">0.00</string>
     <string name="add_fuel_unit_liter">L</string>
-    <string name="add_fuel_label_price">HARGA / LITER</string>
+    <string name="add_fuel_label_price">HARGA / LITER (Opsional)</string>
     <string name="add_fuel_hint_price">0</string>
     <string name="add_fuel_prefix_currency">Rp</string>
     <string name="add_fuel_total_label">Total Biaya</string>

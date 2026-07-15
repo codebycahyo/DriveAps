@@ -194,13 +194,15 @@
                     android:textAppearance="@style/TextAppearance.DriveTrack.Body"
                     app:lineHeightSp="20" />
 
-                <com.example.kendaraanbp1.ui.widget.DTextView
+                <EditText
                     android:id="@+id/totalCostValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_fuel_total_value"
+                    android:background="@android:color/transparent"
+                    android:hint="0"
+                    android:inputType="number"
                     android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
-                    app:lineHeightSp="24" />
+                    android:textColor="@color/text_primary" />
             </LinearLayout>
 
             <!-- Odometer -->
@@ -208,7 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_16"
-                android:text="@string/add_fuel_label_odometer"
+                android:text="Odometer (km) (Opsional)"
                 android:textAppearance="@style/TextAppearance.DriveTrack.Body"
                 android:textColor="@color/text_primary"
                 app:lineHeightSp="20" />
@@ -248,7 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_16"
-                android:text="@string/add_fuel_label_station"
+                android:text="SPBU / Pom Bensin (Opsional)"
                 android:textAppearance="@style/TextAppearance.DriveTrack.Body"
                 android:textColor="@color/text_primary"
                 app:lineHeightSp="20" />

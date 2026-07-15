@@ -8,12 +8,14 @@ plugins {
 
 android {
     namespace = "com.example.kendaraanbp1"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.kendaraanbp1"
+        // NOTE: Google Play menolak package "com.example.*". Ganti ke domain milikmu
+        // sebelum upload pertama — applicationId PERMANEN dan tidak bisa diubah setelah rilis.
+        applicationId = "com.drivetrack.app"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
