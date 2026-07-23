@@ -6,6 +6,27 @@
         <item name="cornerSize">@dimen/radius_large</item>
     </style>
 
+    <!-- Premium rounded dialogs (applied app-wide via materialAlertDialogTheme) -->
+    <style name="ShapeAppearance.DriveTrack.Dialog" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/radius_xlarge</item>
+    </style>
+
+    <style name="ThemeOverlay.DriveTrack.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DriveTrack.Dialog</item>
+        <item name="dialogCornerRadius">@dimen/radius_xlarge</item>
+    </style>
+
+    <!-- Modal bottom sheets: transparent frame so the content's rounded-top surface shows cleanly -->
+    <style name="ThemeOverlay.DriveTrack.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.DriveTrack.BottomSheet</item>
+    </style>
+
+    <style name="Widget.DriveTrack.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+    </style>
+
     <!-- NEW: Standard Card Style -->
     <style name="Widget.DriveTrack.Card.Default" parent="Widget.Material3.CardView.Elevated">
         <item name="cardElevation">@dimen/elevation_card</item>
@@ -49,13 +70,15 @@
         <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/color_cta_on_primary</item>
+        <item name="android:minHeight">@dimen/button_height</item>
         <item name="backgroundTint">@color/color_cta_primary</item>
-        <item name="cornerRadius">@dimen/radius_medium</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
         <item name="iconGravity">textEnd</item>
         <item name="iconPadding">@dimen/spacing_8</item>
         <item name="iconTint">@color/color_cta_on_primary</item>
         <item name="rippleColor">@color/glass_overlay_press</item>
         <item name="elevation">@dimen/elevation_card</item>
+        <item name="android:stateListAnimator">@animator/press_scale</item>
     </style>
 
     <style name="Widget.DriveTrack.Button.Social" parent="Widget.Material3.Button.OutlinedButton">
@@ -90,5 +113,100 @@
         <item name="iconTint">@color/white</item>
         <item name="rippleColor">@color/glass_overlay_press</item>
         <item name="elevation">@dimen/elevation_none</item>
+    </style>
+
+    <!-- =========================================================
+         SHARED BUTTON FAMILY (additive). All ≥48dp touch target,
+         non-caps, Plus Jakarta Sans, consistent 16dp radius, and a
+         subtle press-scale micro-interaction.
+         ========================================================= -->
+
+    <!-- Secondary: tonal filled, for lower-emphasis primary actions -->
+    <style name="Widget.DriveTrack.Button.Secondary" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">@dimen/button_height_small</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="backgroundTint">@color/surface_variant</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="iconTint">@color/text_primary</item>
+        <item name="iconPadding">@dimen/spacing_8</item>
+        <item name="rippleColor">@color/glass_overlay_light</item>
+        <item name="android:stateListAnimator">@animator/press_scale</item>
+    </style>
+
+    <!-- Outlined: medium-emphasis, transparent fill + hairline border -->
+    <style name="Widget.DriveTrack.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">@dimen/button_height_small</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="strokeColor">@color/border_default</item>
+        <item name="strokeWidth">@dimen/stroke_thin</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="iconTint">@color/text_primary</item>
+        <item name="iconPadding">@dimen/spacing_8</item>
+        <item name="rippleColor">@color/glass_overlay_light</item>
+        <item name="android:stateListAnimator">@animator/press_scale</item>
+    </style>
+
+    <!-- Text: lowest emphasis, no container -->
+    <style name="Widget.DriveTrack.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">@dimen/button_height_small</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/brand_link</item>
+        <item name="iconTint">@color/brand_link</item>
+        <item name="iconPadding">@dimen/spacing_8</item>
+        <item name="rippleColor">@color/glass_overlay_light</item>
+    </style>
+
+    <!-- Destructive: filled error, for delete/remove actions -->
+    <style name="Widget.DriveTrack.Button.Destructive" parent="Widget.Material3.Button">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minHeight">@dimen/button_height_small</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/status_error</item>
+        <item name="cornerRadius">@dimen/radius_button</item>
+        <item name="iconTint">@color/white</item>
+        <item name="iconPadding">@dimen/spacing_8</item>
+        <item name="rippleColor">@color/glass_overlay_press</item>
+        <item name="android:stateListAnimator">@animator/press_scale</item>
+    </style>
+
+    <!-- Interactive card: elevated surface that presses like a button -->
+    <style name="Widget.DriveTrack.Card.Interactive" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardElevation">@dimen/elevation_soft</item>
+        <item name="cardCornerRadius">@dimen/radius_card_default</item>
+        <item name="cardBackgroundColor">@color/surface_white</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="rippleColor">@color/glass_overlay_light</item>
+        <item name="android:stateListAnimator">@animator/press_scale</item>
+    </style>
+
+    <!-- Skeleton placeholder block: base fill for shimmer loading.
+         parent="" disables implicit dotted-name inheritance (there is no
+         base "Widget.DriveTrack" style to inherit from). -->
+    <style name="Widget.DriveTrack.Skeleton" parent="">
+        <item name="android:background">@drawable/bg_skeleton</item>
     </style>
 </resources>

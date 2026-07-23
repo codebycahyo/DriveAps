@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Subtle press feedback for cards and buttons: gently scales down on touch,
+     springs back on release. Lightweight, GPU-cheap micro-interaction. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <set>
+            <objectAnimator
+                android:duration="110"
+                android:propertyName="scaleX"
+                android:valueTo="0.97"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+            <objectAnimator
+                android:duration="110"
+                android:propertyName="scaleY"
+                android:valueTo="0.97"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+        </set>
+    </item>
+    <item>
+        <set>
+            <objectAnimator
+                android:duration="160"
+                android:propertyName="scaleX"
+                android:valueTo="1.0"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+            <objectAnimator
+                android:duration="160"
+                android:propertyName="scaleY"
+                android:valueTo="1.0"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in" />
+        </set>
+    </item>
+</selector>

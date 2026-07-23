@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Repeating left-to-right sweep for a shimmer highlight overlay.
+     Apply with: view.startAnimation(AnimationUtils.loadAnimation(ctx, R.anim.shimmer_sweep)) -->
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="1100"
+    android:fromXDelta="-120%"
+    android:toXDelta="120%"
+    android:repeatCount="infinite"
+    android:repeatMode="restart"
+    android:interpolator="@android:interpolator/accelerate_decelerate" />

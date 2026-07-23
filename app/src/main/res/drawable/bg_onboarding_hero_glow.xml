@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Soft radial glow behind the onboarding hero for a premium, floating feel.
+     Subtle brand-blue halo that reads well in both light and dark themes. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="190dp"
+        android:startColor="#333D6BF5"
+        android:centerColor="#1A3D6BF5"
+        android:endColor="#003D6BF5" />
+</shape>

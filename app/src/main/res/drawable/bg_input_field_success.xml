@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Success variant of bg_input_field: swap in when a field validates cleanly. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/surface_input" />
+            <corners android:radius="@dimen/radius_small" />
+            <stroke
+                android:width="1.5dp"
+                android:color="@color/status_success" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/surface_input" />
+            <corners android:radius="@dimen/radius_small" />
+            <stroke
+                android:width="1.5dp"
+                android:color="@color/status_success" />
+        </shape>
+    </item>
+</selector>

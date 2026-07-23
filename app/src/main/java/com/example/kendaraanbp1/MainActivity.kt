@@ -30,7 +30,14 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navHostFragment.navController
+        val navController = navHostFragment.navController
+        // Auto-login: if a session exists, open straight into the app and skip
+        // onboarding/login. Otherwise start at the onboarding welcome screen.
+        val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        if (com.example.kendaraanbp1.util.SessionManager.isLoggedIn(this)) {
+            navGraph.setStartDestination(R.id.homeDashboardFragment)
+        }
+        navController.graph = navGraph
         
         // Request Notifications Permission (Android 13+)
         PermissionHelper.checkAndRequestNotificationPermission(this, requestNotificationPermissionLauncher)

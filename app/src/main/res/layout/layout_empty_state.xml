@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Shared empty state. IDs preserved for EmptyStateHelper: emptyStateRoot,
+     emptyStateIcon, emptyStateTitle, emptyStateSubtitle.
+     emptyStateAction is optional (GONE by default) — show it and set an
+     OnClickListener to offer a primary action ("Tambah data", etc.). -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,23 +11,24 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingVertical="@dimen/spacing_32"
+    android:paddingHorizontal="@dimen/spacing_32"
+    android:paddingVertical="@dimen/spacing_40"
     android:visibility="gone"
     tools:visibility="visible">
 
     <FrameLayout
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
         android:background="@drawable/shape_oval_solid"
-        android:backgroundTint="@color/surface_variant">
+        android:backgroundTint="@color/surface_highlight">
 
         <ImageView
             android:id="@+id/emptyStateIcon"
-            android:layout_width="@dimen/icon_size_large"
-            android:layout_height="@dimen/icon_size_large"
+            android:layout_width="@dimen/icon_size_xlarge"
+            android:layout_height="@dimen/icon_size_xlarge"
             android:layout_gravity="center"
             android:contentDescription="@null"
-            app:tint="@color/icon_secondary"
+            app:tint="@color/icon_blue"
             tools:src="@drawable/ic_inbox" />
     </FrameLayout>
 
@@ -31,19 +36,33 @@
         android:id="@+id/emptyStateTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginTop="@dimen/spacing_20"
         android:gravity="center"
-        android:textAppearance="@style/TextAppearance.DriveTrack.ItemTitle"
-        app:lineHeightSp="20"
+        android:textAppearance="@style/TextAppearance.DriveTrack.Title20"
+        app:lineHeightSp="26"
         tools:text="Belum ada data" />
 
     <com.example.kendaraanbp1.ui.widget.DTextView
         android:id="@+id/emptyStateSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_8"
+        android:gravity="center"
+        android:maxWidth="320dp"
+        android:textAppearance="@style/TextAppearance.DriveTrack.Body"
+        app:lineHeightSp="21"
+        tools:text="Catatan yang kamu tambahkan akan muncul di sini" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/emptyStateAction"
+        style="@style/Widget.DriveTrack.Button.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_4"
-        android:gravity="center"
-        android:textAppearance="@style/TextAppearance.DriveTrack.Body"
-        app:lineHeightSp="20"
-        tools:text="Catatan yang kamu tambahkan akan muncul di sini" />
+        android:layout_marginTop="@dimen/spacing_24"
+        android:paddingHorizontal="@dimen/spacing_24"
+        android:visibility="gone"
+        app:icon="@drawable/ic_plus"
+        app:iconGravity="textStart"
+        tools:text="Tambah data"
+        tools:visibility="visible" />
 </LinearLayout>

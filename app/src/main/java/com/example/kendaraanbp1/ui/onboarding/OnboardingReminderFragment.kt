@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.kendaraanbp1.R
 import com.example.kendaraanbp1.databinding.FragmentOnboardingReminderBinding
+import com.example.kendaraanbp1.ui.util.applyBottomSystemBarPadding
+import com.example.kendaraanbp1.ui.util.startFloatingAnimation
 
 class OnboardingReminderFragment : Fragment() {
 
     private var _binding: FragmentOnboardingReminderBinding? = null
     private val binding get() = _binding!!
+    private var floatAnim: android.animation.Animator? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +29,9 @@ class OnboardingReminderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.bottomDock.applyBottomSystemBarPadding()
+        floatAnim = binding.heroImage.startFloatingAnimation()
+
         binding.startButton.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingReminderFragment_to_loginFragment)
         }
@@ -33,6 +39,8 @@ class OnboardingReminderFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        floatAnim?.cancel()
+        floatAnim = null
         _binding = null
     }
 }

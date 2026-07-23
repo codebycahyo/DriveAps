@@ -198,7 +198,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.DriveTrack.TextInputLayout.Plain"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="@dimen/input_height"
                     android:layout_marginTop="@dimen/spacing_8">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -208,6 +208,7 @@
                         android:background="@android:color/transparent"
                         android:drawableEnd="@drawable/ic_car"
                         android:drawableTint="@color/border_default"
+                        android:gravity="center_vertical"
                         android:hint="@string/add_vehicle_hint_brand"
                         android:inputType="text"
                         android:paddingHorizontal="@dimen/spacing_16"
@@ -228,7 +229,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.DriveTrack.TextInputLayout.Plain"
                     android:layout_width="match_parent"
-                    android:layout_height="49dp"
+                    android:layout_height="@dimen/input_height"
                     android:layout_marginTop="@dimen/spacing_8">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -236,6 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
                         android:hint="@string/add_vehicle_hint_model"
                         android:inputType="text"
                         android:paddingHorizontal="@dimen/spacing_16"
@@ -269,7 +271,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.DriveTrack.TextInputLayout.Plain"
                             android:layout_width="match_parent"
-                            android:layout_height="45dp"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8">
 
                             <com.google.android.material.textfield.TextInputEditText
@@ -277,6 +279,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent"
+                                android:gravity="center_vertical"
                                 android:hint="@string/add_vehicle_hint_plate"
                                 android:inputType="textCapCharacters"
                                 android:paddingHorizontal="@dimen/spacing_16"
@@ -303,7 +306,7 @@
                         <FrameLayout
                             android:id="@+id/yearSelector"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8"
                             android:background="@drawable/bg_input_field_plain">
 
@@ -340,7 +343,7 @@
                     android:id="@+id/cancelButton"
                     style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/button_height"
                     android:layout_weight="1"
                     android:background="@drawable/bg_button_outline_pill"
                     android:letterSpacing="0"
@@ -353,7 +356,7 @@
                     android:id="@+id/nextButton"
                     style="@style/Widget.DriveTrack.Button.Primary"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
+                    android:layout_height="@dimen/button_height"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:layout_weight="1.61"
                     android:text="@string/action_next"

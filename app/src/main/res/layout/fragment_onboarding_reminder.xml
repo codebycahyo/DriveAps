@@ -8,110 +8,114 @@
     android:clipChildren="false"
     tools:context=".ui.onboarding.OnboardingReminderFragment">
 
+    <!-- Atmospheric soft blobs -->
     <View
-        android:layout_width="234dp"
-        android:layout_height="234dp"
-        android:layout_marginStart="-39dp"
-        android:layout_marginTop="-88dp"
-        android:alpha="0.7"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="-56dp"
+        android:layout_marginTop="-64dp"
+        android:alpha="0.6"
         android:background="@drawable/shape_oval_solid"
         android:backgroundTint="@color/glass_blob_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="195dp"
-        android:layout_height="195dp"
-        android:layout_marginStart="234dp"
-        android:layout_marginTop="177dp"
-        android:alpha="0.6"
-        android:background="@drawable/shape_oval_solid"
-        android:backgroundTint="@color/glass_blob_peach"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:layout_width="273dp"
-        android:layout_height="273dp"
-        android:layout_marginStart="@dimen/spacing_72"
-        android:layout_marginTop="699dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginEnd="-56dp"
+        android:layout_marginTop="104dp"
         android:alpha="0.5"
         android:background="@drawable/shape_oval_solid"
         android:backgroundTint="@color/glass_blob_teal"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Illustration -->
-    <FrameLayout
-        android:id="@+id/illustrationArea"
-        android:layout_width="320dp"
-        android:layout_height="320dp"
-        android:layout_marginTop="142dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_glass_circle"
-            android:elevation="@dimen/elevation_card" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/cd_hero_illustration"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_onboarding_reminder_hero"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.DriveTrack.Rounded24" />
-    </FrameLayout>
-
-    <!-- Text content -->
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="501dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.example.kendaraanbp1.ui.widget.DTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/onboarding_reminder_headline"
-            android:textAppearance="@style/TextAppearance.DriveTrack.BrandTitle"
-            app:lineHeightSp="32" />
-
-        <com.example.kendaraanbp1.ui.widget.DTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_8"
-            android:gravity="center"
-            android:text="@string/onboarding_reminder_body"
-            android:textAppearance="@style/TextAppearance.DriveTrack.Body"
-            app:lineHeightSp="20" />
-    </LinearLayout>
-
-    <!-- Controls -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="760dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_20"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/bottomDock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_24"
+            android:paddingTop="@dimen/spacing_40"
+            android:paddingBottom="@dimen/spacing_24">
+
+            <!-- Floating hero -->
+            <FrameLayout
+                android:id="@+id/illustrationArea"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:clipChildren="false">
+
+                <View
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_onboarding_hero_glow" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/heroImage"
+                    android:layout_width="248dp"
+                    android:layout_height="248dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/cd_hero_illustration"
+                    android:elevation="@dimen/elevation_card"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_onboarding_reminder_hero"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.DriveTrack.Rounded24" />
+            </FrameLayout>
+
+            <!-- Heading -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_32"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@string/onboarding_reminder_headline"
+                android:textAppearance="@style/TextAppearance.DriveTrack.Display"
+                app:lineHeightSp="40" />
+
+            <!-- Subtitle -->
+            <com.example.kendaraanbp1.ui.widget.DTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:gravity="center"
+                android:text="@string/onboarding_reminder_body"
+                android:textAppearance="@style/TextAppearance.DriveTrack.BodyLarge"
+                app:lineHeightSp="24" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom control bar -->
+    <LinearLayout
+        android:id="@+id/bottomDock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_24"
+        android:paddingTop="@dimen/spacing_16"
+        android:paddingBottom="@dimen/spacing_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/spacing_24"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -136,10 +140,11 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/startButton"
-            style="@style/Widget.DriveTrack.Button.GradientCta"
+            style="@style/Widget.DriveTrack.Button.Primary"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="@dimen/button_height"
             android:text="@string/onboarding_cta_start"
-            app:cornerRadius="@dimen/radius_pill" />
+            app:cornerRadius="@dimen/radius_button"
+            app:icon="@drawable/ic_arrow_forward" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

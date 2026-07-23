@@ -152,8 +152,14 @@ class HomeDashboardFragment : Fragment() {
                 }
 
                 launch {
-                    homeViewModel.efficiency.collect { value ->
-                        binding.homeEfficiencyValue.text = value
+                    homeViewModel.totalDistance.collect { value ->
+                        binding.homeDistanceValue.text = value
+                    }
+                }
+
+                launch {
+                    homeViewModel.distanceThisMonth.collect { value ->
+                        binding.homeDistanceBadge.text = value
                     }
                 }
 

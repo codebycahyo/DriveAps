@@ -12,11 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.kendaraanbp1.R
 import com.example.kendaraanbp1.databinding.FragmentOnboardingWelcomeBinding
 import com.example.kendaraanbp1.ui.util.applyBottomSystemBarPadding
+import com.example.kendaraanbp1.ui.util.startFloatingAnimation
 
 class OnboardingWelcomeFragment : Fragment() {
 
     private var _binding: FragmentOnboardingWelcomeBinding? = null
     private val binding get() = _binding!!
+    private var floatAnim: android.animation.Animator? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +37,14 @@ class OnboardingWelcomeFragment : Fragment() {
         applyBlurIfSupported(binding.blobViolet, 40f)
         applyBlurIfSupported(binding.blobTeal, 50f)
 
+        floatAnim = binding.heroImage.startFloatingAnimation()
+
         binding.nextButton.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingWelcomeFragment_to_onboardingScanFragment)
+        }
+
+        binding.skipButton.setOnClickListener {
+            findNavController().navigate(R.id.action_onboardingWelcomeFragment_to_loginFragment)
         }
     }
 
@@ -50,6 +58,8 @@ class OnboardingWelcomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        floatAnim?.cancel()
+        floatAnim = null
         _binding = null
     }
 }

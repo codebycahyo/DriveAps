@@ -24,23 +24,41 @@
     <string name="login_footer_link">Daftar</string>
     <string name="login_trust_banner">DATA TERENKRIPSI DAN AMAN</string>
 
+    <!-- Auth validation, loading & result messages -->
+    <string name="auth_error_name_empty">Nama tidak boleh kosong</string>
+    <string name="auth_error_email_empty">Email tidak boleh kosong</string>
+    <string name="auth_error_email_invalid">Format email tidak valid</string>
+    <string name="auth_error_password_empty">Kata sandi tidak boleh kosong</string>
+    <string name="auth_error_password_short">Kata sandi minimal 6 karakter</string>
+    <string name="auth_error_confirm_empty">Konfirmasi kata sandi tidak boleh kosong</string>
+    <string name="auth_error_confirm_mismatch">Konfirmasi kata sandi tidak cocok</string>
+    <string name="auth_error_terms">Setujui Syarat &amp; Ketentuan untuk melanjutkan</string>
+    <string name="login_loading">Memuat…</string>
+    <string name="register_loading">Mendaftar…</string>
+    <string name="login_success">Berhasil masuk</string>
+    <string name="register_success">Akun berhasil dibuat. Selamat datang!</string>
+    <string name="auth_forgot_title">Lupa Kata Sandi?</string>
+    <string name="auth_forgot_offline">Aplikasi ini bekerja sepenuhnya offline sehingga pemulihan lewat email tidak tersedia. Buat akun baru jika kata sandi terlupa.</string>
+    <string name="auth_forgot_ok">Mengerti</string>
+
     <!-- Onboarding - Selamat Datang -->
     <string name="onboarding_welcome_tag">Pantau Kendaraan Anda</string>
     <string name="onboarding_welcome_headline">Selamat Datang di\nDriveTrack</string>
-    <string name="onboarding_welcome_body">Solusi cerdas untuk mencatat pengeluaran,\nservis, dan dokumen kendaraan Anda secara\noffline.</string>
+    <string name="onboarding_welcome_body">Solusi cerdas untuk mencatat pengeluaran, servis, dan dokumen kendaraan Anda secara offline.</string>
     <string name="onboarding_cta_next">Lanjut</string>
     <string name="cd_hero_illustration">Ilustrasi kendaraan</string>
 
     <!-- Onboarding - Scan Struk -->
     <string name="onboarding_scan_headline">Catat Cepat dengan\nOCR</string>
-    <string name="onboarding_scan_body">Cukup foto struk BBM atau servis, biarkan\nteknologi AI kami mencatat nominal dan\ntanggalnya secara otomatis.</string>
+    <string name="onboarding_scan_body">Cukup foto struk BBM atau servis, biarkan teknologi AI kami mencatat nominal dan tanggalnya secara otomatis.</string>
     <string name="cd_icon_camera">Ikon kamera</string>
     <string name="cd_icon_receipt_amount">Ikon nominal terdeteksi</string>
 
     <!-- Onboarding - Pengingat Pintar -->
     <string name="onboarding_reminder_headline">Jangan Lewatkan Jatuh\nTempo</string>
-    <string name="onboarding_reminder_body">Dapatkan pengingat otomatis untuk pajak\nSTNK, asuransi, dan jadwal servis rutin agar\nkendaraan tetap prima.</string>
+    <string name="onboarding_reminder_body">Dapatkan pengingat otomatis untuk pajak STNK, asuransi, dan jadwal servis rutin agar kendaraan tetap prima.</string>
     <string name="onboarding_cta_start">Mulai Sekarang</string>
+    <string name="onboarding_skip">Lewati</string>
 
     <!-- Register screen -->
     <string name="register_brand_subtitle">Kelola aset kendaraan Anda dengan cerdas</string>
@@ -75,6 +93,11 @@
     <string name="quick_action_service">Servis</string>
     <string name="quick_action_scan">Scan\nStruk</string>
     <string name="quick_action_document">Dokumen</string>
+    <string name="home_distance_title">Jarak Tempuh</string>
+    <string name="home_distance_value">0</string>
+    <string name="home_distance_unit">km</string>
+    <string name="home_distance_badge">Bulan ini +0 km</string>
+    
     <string name="home_efficiency_title">Efisiensi BBM</string>
     <string name="home_efficiency_value">12.4</string>
     <string name="home_efficiency_unit">km/L</string>

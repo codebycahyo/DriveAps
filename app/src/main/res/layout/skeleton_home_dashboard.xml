@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home dashboard loading skeleton. include it in the dashboard, keep GONE,
+     then: skeletonHomeRoot.visibility = VISIBLE; start R.anim.skeleton_pulse on it
+     while HomeViewModel loads; hide on first data emission. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/skeletonHomeRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/spacing_20"
+    android:paddingTop="@dimen/spacing_16"
+    android:visibility="gone">
+
+    <!-- Hero card block -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/bg_skeleton_card" />
+
+    <!-- Quick-action row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_skeleton_card" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:layout_weight="1"
+            android:background="@drawable/bg_skeleton_card" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:layout_weight="1"
+            android:background="@drawable/bg_skeleton_card" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="@dimen/spacing_12"
+            android:layout_weight="1"
+            android:background="@drawable/bg_skeleton_card" />
+    </LinearLayout>
+
+    <!-- Stat card block -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:background="@drawable/bg_skeleton_card" />
+
+    <!-- Section header line -->
+    <View
+        android:layout_width="160dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:background="@drawable/bg_skeleton" />
+
+    <!-- Activity rows -->
+    <include layout="@layout/skeleton_list_item" />
+
+    <include layout="@layout/skeleton_list_item" />
+
+    <include layout="@layout/skeleton_list_item" />
+</LinearLayout>

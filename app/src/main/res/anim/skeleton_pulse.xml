@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Lightweight breathing pulse for a whole skeleton container. Cheapest
+     shimmer: apply to the skeleton root and it fades all blocks in unison.
+     view.startAnimation(AnimationUtils.loadAnimation(ctx, R.anim.skeleton_pulse)) -->
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fromAlpha="1.0"
+    android:toAlpha="0.45"
+    android:duration="750"
+    android:repeatCount="infinite"
+    android:repeatMode="reverse"
+    android:interpolator="@android:interpolator/fast_out_slow_in" />

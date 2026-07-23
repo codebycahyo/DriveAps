@@ -31,7 +31,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_20"
                 android:layout_marginTop="@dimen/spacing_16"
-                android:background="@drawable/bg_hero_card">
+                android:background="@drawable/bg_hero_card"
+                android:elevation="@dimen/elevation_card"
+                android:outlineProvider="background">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -198,7 +200,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_20"
                 android:layout_marginTop="@dimen/spacing_24"
-                android:background="@drawable/bg_dashboard_card">
+                android:background="@drawable/bg_dashboard_card"
+                android:elevation="@dimen/elevation_soft"
+                android:outlineProvider="background">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -216,7 +220,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/home_efficiency_title"
+                            android:text="@string/home_distance_title"
                             android:textAppearance="@style/TextAppearance.DriveTrack.Title20"
                             app:lineHeightSp="28" />
 
@@ -231,7 +235,7 @@
                                 android:layout_height="@dimen/icon_size_medium"
                                 android:layout_gravity="center"
                                 android:contentDescription="@null"
-                                android:src="@drawable/ic_leaf"
+                                android:src="@drawable/ic_gauge"
                                 app:tint="@color/status_success" />
                         </FrameLayout>
                     </LinearLayout>
@@ -244,10 +248,10 @@
                         android:orientation="horizontal">
 
                         <com.example.kendaraanbp1.ui.widget.DTextView
-                            android:id="@+id/homeEfficiencyValue"
+                            android:id="@+id/homeDistanceValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/home_efficiency_value"
+                            android:text="@string/home_distance_value"
                             android:textAppearance="@style/TextAppearance.DriveTrack.StatNumber"
                             app:lineHeightSp="34" />
 
@@ -256,12 +260,13 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/spacing_4"
                             android:layout_marginBottom="@dimen/spacing_4"
-                            android:text="@string/home_efficiency_unit"
+                            android:text="@string/home_distance_unit"
                             android:textAppearance="@style/TextAppearance.DriveTrack.UnitLabel"
                             app:lineHeightSp="20" />
                     </LinearLayout>
 
                     <com.example.kendaraanbp1.ui.widget.DTextView
+                        android:id="@+id/homeDistanceBadge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_16"
@@ -269,7 +274,7 @@
                         android:backgroundTint="@color/surface_teal_light"
                         android:paddingHorizontal="@dimen/spacing_12"
                         android:paddingVertical="@dimen/spacing_4"
-                        android:text="@string/home_efficiency_badge"
+                        android:text="@string/home_distance_badge"
                         android:textAppearance="@style/TextAppearance.DriveTrack.LabelMedium"
                         android:textColor="@color/text_secondary"
                         app:lineHeightSp="16" />
@@ -282,7 +287,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_20"
                 android:layout_marginTop="@dimen/spacing_24"
-                android:background="@drawable/bg_dashboard_card">
+                android:background="@drawable/bg_dashboard_card"
+                android:elevation="@dimen/elevation_soft"
+                android:outlineProvider="background">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -338,7 +345,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_20"
                 android:layout_marginTop="@dimen/spacing_24"
-                android:background="@drawable/bg_dashboard_card">
+                android:background="@drawable/bg_dashboard_card"
+                android:elevation="@dimen/elevation_soft"
+                android:outlineProvider="background">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_white"
+    android:background="@color/window_background"
     android:fillViewport="true"
     tools:context=".ui.login.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/spacing_16"
-        android:paddingTop="@dimen/spacing_24"
-        android:paddingBottom="@dimen/spacing_24">
+        android:paddingHorizontal="@dimen/spacing_20"
+        android:paddingTop="@dimen/spacing_40"
+        android:paddingBottom="@dimen/spacing_32">
 
         <!-- Header: Logo & Brand -->
         <LinearLayout

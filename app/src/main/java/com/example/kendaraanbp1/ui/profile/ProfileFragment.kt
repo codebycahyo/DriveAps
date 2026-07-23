@@ -75,6 +75,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.logoutButton.setOnClickListener {
+            com.example.kendaraanbp1.util.SessionManager.logout(requireContext())
             findNavController().navigate(R.id.loginFragment, null, NavOptions.Builder()
                 .setPopUpTo(R.id.nav_graph, true)
                 .build())

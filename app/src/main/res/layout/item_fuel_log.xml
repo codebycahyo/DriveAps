@@ -119,6 +119,5 @@
             app:lineHeightSp="16"
             tools:text="Odometer: 12.600 km" />
     </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

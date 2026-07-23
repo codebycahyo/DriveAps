@@ -28,6 +28,7 @@ import com.example.kendaraanbp1.ui.util.VerticalSpaceItemDecoration
 import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setEmptyState
 import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.example.kendaraanbp1.ui.util.applyTopSystemBarPadding
 import com.example.kendaraanbp1.ui.adddocument.AddDocumentFragment
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -59,6 +60,7 @@ class VehicleDocumentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.header.applyTopSystemBarPadding()
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
         binding.searchButton.visibility = View.GONE // Hidden for MVP release
         binding.addDocumentFab.setOnClickListener {

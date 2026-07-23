@@ -31,7 +31,7 @@ fun LayoutBottomNavBinding.setActiveTab(tab: BottomNavTab) {
         } else {
             views.indicator.background = null
         }
-        val contentColor = if (active) R.color.brand_ink else R.color.text_placeholder
+        val contentColor = if (active) R.color.nav_content_active else R.color.text_placeholder
         views.icon.imageTintList = ContextCompat.getColorStateList(context, contentColor)
         views.label.setTextColor(ContextCompat.getColor(context, contentColor))
         

@@ -133,22 +133,40 @@ class HomeViewModel(
             fuelRepo.getLogsByVehicle(id),
             serviceRepo.getLogsByVehicle(id)
         ) { fuelRes, serviceRes ->
-            val fuelSum = (fuelRes.data ?: emptyList())
-                .filter { it.date >= monthStart }.sumOf { it.totalCost }
-            val serviceSum = (serviceRes.data ?: emptyList())
-                .filter { it.date >= monthStart }.sumOf { it.totalCost }
-            (fuelSum + serviceSum).toRupiah()
+            val fuelThisMonth = (fuelRes.data ?: emptyList())
+                .filter { it.date >= monthStart }
+            val serviceThisMonth = (serviceRes.data ?: emptyList())
+                .filter { it.date >= monthStart }
+            // Total dihitung lewat hierarki OOP Pengeluaran (polimorfisme di VehicleStats).
+            VehicleStats.totalPengeluaran(fuelThisMonth, serviceThisMonth).toRupiah()
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, 0.0.toRupiah())
 
-    /** Efisiensi BBM (km/L) dari data pengisian, atau "–" bila data belum cukup. */
+    /** Total Jarak Tempuh dari Odometer tertinggi, diformat ribuan */
     @OptIn(ExperimentalCoroutinesApi::class)
-    val efficiency: StateFlow<String> = _vehicleId.flatMapLatest { id ->
-        if (id == null) return@flatMapLatest flowOf("–")
-        fuelRepo.getLogsByVehicle(id).map { res ->
-            VehicleStats.formatKmPerL(VehicleStats.fuelEconomyKmPerL(res.data ?: emptyList()))
+    val totalDistance: StateFlow<String> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf("0")
+        combine(
+            fuelRepo.getLogsByVehicle(id),
+            serviceRepo.getLogsByVehicle(id)
+        ) { fuelRes, serviceRes ->
+            val maxOdo = VehicleStats.lastOdometer(fuelRes.data ?: emptyList(), serviceRes.data ?: emptyList())
+            VehicleStats.formatThousands(maxOdo)
         }
-    }.stateIn(viewModelScope, SharingStarted.Lazily, "–")
+    }.stateIn(viewModelScope, SharingStarted.Lazily, "0")
+
+    /** Penambahan jarak di bulan ini */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val distanceThisMonth: StateFlow<String> = _vehicleId.flatMapLatest { id ->
+        if (id == null) return@flatMapLatest flowOf("Bulan ini +0 km")
+        combine(
+            fuelRepo.getLogsByVehicle(id),
+            serviceRepo.getLogsByVehicle(id)
+        ) { fuelRes, serviceRes ->
+            val dist = VehicleStats.distanceThisMonth(fuelRes.data ?: emptyList(), serviceRes.data ?: emptyList())
+            "Bulan ini +${VehicleStats.formatThousands(dist)} km"
+        }
+    }.stateIn(viewModelScope, SharingStarted.Lazily, "Bulan ini +0 km")
 
     /** Pengingat terdekat untuk badge di hero card; null bila tidak ada. */
     val topReminder: StateFlow<ReminderItem?> = reminders.map { res ->

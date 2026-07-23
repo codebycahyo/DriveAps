@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.kendaraanbp1.data.local.AppDatabase
+import com.example.kendaraanbp1.data.repository.AuthRepository
 import com.example.kendaraanbp1.data.repository.DocumentRepository
 import com.example.kendaraanbp1.data.repository.FuelRepository
 import com.example.kendaraanbp1.data.repository.ServiceRepository
 import com.example.kendaraanbp1.data.repository.VehicleRepository
+import com.example.kendaraanbp1.ui.login.LoginViewModel
+import com.example.kendaraanbp1.ui.register.RegisterViewModel
 import com.example.kendaraanbp1.ui.documents.DocumentViewModel
 import com.example.kendaraanbp1.ui.fuelhistory.FuelHistoryViewModel
 import com.example.kendaraanbp1.ui.home.HomeViewModel
@@ -23,9 +26,16 @@ class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory
         val fuelRepo = FuelRepository(database.fuelLogDao())
         val serviceRepo = ServiceRepository(database.serviceLogDao())
         val documentRepo = DocumentRepository(database.documentDao())
+        val authRepo = AuthRepository(database.userDao())
         val notificationScheduler = com.example.kendaraanbp1.service.NotificationScheduler(context)
 
         return when {
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                LoginViewModel(authRepo) as T
+            }
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(authRepo) as T
+            }
             modelClass.isAssignableFrom(SharedVehicleViewModel::class.java) -> {
                 SharedVehicleViewModel(vehicleRepo) as T
             }

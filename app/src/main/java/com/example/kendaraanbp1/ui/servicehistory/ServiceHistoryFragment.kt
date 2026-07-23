@@ -27,6 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.example.kendaraanbp1.databinding.FragmentServiceHistoryBinding
 import com.example.kendaraanbp1.ui.util.BottomNavTab
 import com.example.kendaraanbp1.ui.util.applyBottomSystemBarMargin
+import com.example.kendaraanbp1.ui.util.applyTopSystemBarPadding
 import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setActiveTab
 import com.example.kendaraanbp1.ui.util.setEmptyState
@@ -61,6 +62,7 @@ class ServiceHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.header.applyTopSystemBarPadding()
         binding.bottomNavInclude.root.applyBottomSystemBarMargin()
         binding.bottomNavInclude.setActiveTab(BottomNavTab.VEHICLES)
         binding.bottomNavInclude.setupNavigation(findNavController())

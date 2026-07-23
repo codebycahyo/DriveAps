@@ -2,6 +2,9 @@ package com.example.kendaraanbp1.util
 
 import com.example.kendaraanbp1.data.local.entity.FuelLogEntity
 import com.example.kendaraanbp1.data.local.entity.ServiceLogEntity
+import com.example.kendaraanbp1.logic.Pengeluaran
+import com.example.kendaraanbp1.logic.PengeluaranBBM
+import com.example.kendaraanbp1.logic.PengeluaranServis
 import java.text.NumberFormat
 import java.util.Calendar
 import java.util.Locale
@@ -18,6 +21,30 @@ object VehicleStats {
 
     /** e.g. 12500 -> "12.500". */
     fun formatThousands(value: Number): String = numberFormat.format(value)
+
+    /**
+     * Total pengeluaran dari daftar BBM & servis, dihitung lewat hierarki OOP
+     * [Pengeluaran]. Tiap entri di-bungkus jadi objek Pengeluaran, lalu totalnya
+     * dijumlahkan secara POLIMORFISME: setiap objek memakai rumus hitungTotal()-nya
+     * sendiri (BBM = liter x harga, servis = biaya). Dipakai oleh dashboard.
+     */
+    fun totalPengeluaran(
+        fuel: List<FuelLogEntity>,
+        service: List<ServiceLogEntity>,
+    ): Double {
+        val daftar = mutableListOf<Pengeluaran>()
+        for (f in fuel) {
+            daftar.add(PengeluaranBBM(f.date, f.liters, f.pricePerLiter))
+        }
+        for (s in service) {
+            daftar.add(PengeluaranServis(s.date, s.category, s.totalCost))
+        }
+        var total = 0.0
+        for (p in daftar) {
+            total += p.hitungTotal()   // polimorfisme: perilaku beda per subclass
+        }
+        return total
+    }
 
     /**
      * Fuel economy in km/L using the full-to-full method: distance travelled
@@ -55,4 +82,30 @@ object VehicleStats {
         set(Calendar.SECOND, 0)
         set(Calendar.MILLISECOND, 0)
     }.timeInMillis
+
+    /** Distance covered in the current month. */
+    fun distanceThisMonth(fuel: List<FuelLogEntity>, service: List<ServiceLogEntity>): Int {
+        val startOfMonth = startOfCurrentMonth()
+        val allLogsFuelThisMonth = fuel.filter { it.date >= startOfMonth }
+        val allLogsServiceThisMonth = service.filter { it.date >= startOfMonth }
+        
+        if (allLogsFuelThisMonth.isEmpty() && allLogsServiceThisMonth.isEmpty()) return 0
+        
+        val maxOdo = lastOdometer(fuel, service)
+        
+        val maxFuelBefore = fuel.filter { it.date < startOfMonth }.maxOfOrNull { it.odometer } ?: 0
+        val maxServiceBefore = service.filter { it.date < startOfMonth }.maxOfOrNull { it.odometer } ?: 0
+        val maxOdoBefore = maxOf(maxFuelBefore, maxServiceBefore)
+        
+        if (maxOdoBefore == 0) {
+            val minFuelThis = allLogsFuelThisMonth.minOfOrNull { it.odometer } ?: Int.MAX_VALUE
+            val minServiceThis = allLogsServiceThisMonth.minOfOrNull { it.odometer } ?: Int.MAX_VALUE
+            val minOdoThis = minOf(minFuelThis, minServiceThis)
+            
+            if (minOdoThis == Int.MAX_VALUE || minOdoThis == maxOdo) return 0
+            return maxOdo - minOdoThis
+        }
+        
+        return maxOdo - maxOdoBefore
+    }
 }

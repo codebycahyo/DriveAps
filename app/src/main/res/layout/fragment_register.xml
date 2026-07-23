@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_white"
+    android:background="@color/window_background"
     android:fillViewport="true"
     tools:context=".ui.register.RegisterFragment">
 
@@ -96,7 +96,7 @@
                 app:cardBackgroundColor="@color/surface_white"
                 app:cardCornerRadius="@dimen/radius_large"
                 app:cardElevation="@dimen/elevation_card"
-                app:strokeColor="@color/border_card_translucent"
+                app:strokeColor="@color/border_card"
                 app:strokeWidth="@dimen/stroke_thin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,8 +113,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/register_heading"
-                        android:textAppearance="@style/TextAppearance.DriveTrack.HeadingSemibold18"
-                        app:lineHeightSp="24" />
+                        android:textAppearance="@style/TextAppearance.DriveTrack.Headline"
+                        app:lineHeightSp="30" />
 
                     <!-- Form -->
                     <LinearLayout
@@ -129,13 +129,14 @@
                             android:layout_height="wrap_content"
                             android:text="@string/register_label_name"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
-                            android:textColor="@color/icon_secondary"
+                            android:textColor="@color/text_secondary"
                             app:lineHeightSp="16" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/nameInputLayout"
                             style="@style/Widget.DriveTrack.TextInputLayout.Compact"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8"
                             app:startIconDrawable="@drawable/ic_user"
                             app:startIconTint="@color/icon_secondary">
@@ -151,7 +152,7 @@
                                 android:hint="@string/register_hint_name"
                                 android:inputType="textPersonName"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
-                                android:textColorHint="@color/border_default" />
+                                android:textColorHint="@color/text_placeholder" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Email -->
@@ -161,13 +162,14 @@
                             android:layout_marginTop="@dimen/spacing_16"
                             android:text="@string/register_label_email"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
-                            android:textColor="@color/icon_secondary"
+                            android:textColor="@color/text_secondary"
                             app:lineHeightSp="16" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/emailInputLayout"
                             style="@style/Widget.DriveTrack.TextInputLayout.Compact"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8"
                             app:startIconDrawable="@drawable/ic_mail"
                             app:startIconTint="@color/icon_secondary">
@@ -183,7 +185,7 @@
                                 android:hint="@string/register_hint_email"
                                 android:inputType="textEmailAddress"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
-                                android:textColorHint="@color/border_default" />
+                                android:textColorHint="@color/text_placeholder" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Password -->
@@ -193,13 +195,14 @@
                             android:layout_marginTop="@dimen/spacing_16"
                             android:text="@string/register_label_password"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
-                            android:textColor="@color/icon_secondary"
+                            android:textColor="@color/text_secondary"
                             app:lineHeightSp="16" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/passwordInputLayout"
                             style="@style/Widget.DriveTrack.TextInputLayout.Compact"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8"
                             app:endIconDrawable="@drawable/selector_password_toggle"
                             app:endIconMode="password_toggle"
@@ -218,7 +221,7 @@
                                 android:hint="@string/login_hint_password"
                                 android:inputType="textPassword"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
-                                android:textColorHint="@color/border_default" />
+                                android:textColorHint="@color/text_placeholder" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Confirm password -->
@@ -228,13 +231,14 @@
                             android:layout_marginTop="@dimen/spacing_16"
                             android:text="@string/register_label_confirm_password"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
-                            android:textColor="@color/icon_secondary"
+                            android:textColor="@color/text_secondary"
                             app:lineHeightSp="16" />
 
                         <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/confirmPasswordInputLayout"
                             style="@style/Widget.DriveTrack.TextInputLayout.Compact"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/input_height_compact"
+                            android:layout_height="@dimen/input_height"
                             android:layout_marginTop="@dimen/spacing_8"
                             app:endIconDrawable="@drawable/selector_password_toggle"
                             app:endIconMode="password_toggle"
@@ -246,11 +250,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent"
+                                android:paddingStart="44dp"
+                                android:paddingEnd="44dp"
+                                android:gravity="start|center_vertical"
                                 android:autofillHints="password"
                                 android:hint="@string/login_hint_password"
                                 android:inputType="textPassword"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.InputText"
-                                android:textColorHint="@color/border_default" />
+                                android:textColorHint="@color/text_placeholder" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <!-- Terms checkbox -->
@@ -285,7 +292,6 @@
                             android:layout_height="@dimen/button_height"
                             android:layout_marginTop="@dimen/spacing_16"
                             android:text="@string/register_cta"
-                            app:cornerRadius="@dimen/radius_small"
                             app:icon="@drawable/ic_arrow_forward" />
                     </LinearLayout>
 
@@ -309,7 +315,7 @@
                             android:layout_marginHorizontal="@dimen/spacing_16"
                             android:text="@string/register_divider_social"
                             android:textAppearance="@style/TextAppearance.DriveTrack.LabelBold"
-                            android:textColor="@color/border_default"
+                            android:textColor="@color/icon_secondary"
                             app:lineHeightSp="16" />
 
                         <View

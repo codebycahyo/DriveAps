@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outgoing onboarding page: slide out to the left + fade out -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:interpolator/accelerate_quint">
+    <translate
+        android:duration="280"
+        android:fromXDelta="0"
+        android:toXDelta="-16%p" />
+    <alpha
+        android:duration="280"
+        android:fromAlpha="1"
+        android:toAlpha="0" />
+</set>

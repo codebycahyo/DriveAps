@@ -12,7 +12,18 @@
         tools:layout="@layout/fragment_onboarding_welcome">
         <action
             android:id="@+id/action_onboardingWelcomeFragment_to_onboardingScanFragment"
-            app:destination="@id/onboardingScanFragment" />
+            app:destination="@id/onboardingScanFragment"
+            app:enterAnim="@anim/onb_enter"
+            app:exitAnim="@anim/onb_exit"
+            app:popEnterAnim="@anim/onb_pop_enter"
+            app:popExitAnim="@anim/onb_pop_exit" />
+        <action
+            android:id="@+id/action_onboardingWelcomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/onb_enter"
+            app:exitAnim="@anim/onb_exit"
+            app:popEnterAnim="@anim/onb_pop_enter"
+            app:popExitAnim="@anim/onb_pop_exit" />
     </fragment>
 
     <fragment
@@ -22,7 +33,18 @@
         tools:layout="@layout/fragment_onboarding_scan">
         <action
             android:id="@+id/action_onboardingScanFragment_to_onboardingReminderFragment"
-            app:destination="@id/onboardingReminderFragment" />
+            app:destination="@id/onboardingReminderFragment"
+            app:enterAnim="@anim/onb_enter"
+            app:exitAnim="@anim/onb_exit"
+            app:popEnterAnim="@anim/onb_pop_enter"
+            app:popExitAnim="@anim/onb_pop_exit" />
+        <action
+            android:id="@+id/action_onboardingScanFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/onb_enter"
+            app:exitAnim="@anim/onb_exit"
+            app:popEnterAnim="@anim/onb_pop_enter"
+            app:popExitAnim="@anim/onb_pop_exit" />
     </fragment>
 
     <fragment
@@ -32,7 +54,11 @@
         tools:layout="@layout/fragment_onboarding_reminder">
         <action
             android:id="@+id/action_onboardingReminderFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/onb_enter"
+            app:exitAnim="@anim/onb_exit"
+            app:popEnterAnim="@anim/onb_pop_enter"
+            app:popExitAnim="@anim/onb_pop_exit" />
     </fragment>
 
     <fragment

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/surface_white"
+    android:background="@drawable/bg_bottom_sheet"
     android:orientation="vertical"
     tools:context=".ui.addfuel.AddFuelEntryFragment">
 
@@ -217,13 +217,13 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_8"
                 android:background="@drawable/bg_input_field_faint">
 
                 <ImageView
                     android:layout_width="@dimen/icon_size_medium"
-                    android:layout_height="@dimen/icon_size_small"
+                    android:layout_height="@dimen/icon_size_medium"
                     android:layout_gravity="center_vertical|start"
                     android:layout_marginStart="@dimen/spacing_16"
                     android:contentDescription="@null"
@@ -234,9 +234,10 @@
                     android:id="@+id/etOdometer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/spacing_40"
+                    android:layout_marginStart="@dimen/spacing_48"
                     android:layout_marginEnd="@dimen/spacing_16"
                     android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
                     android:hint="@string/add_fuel_hint_odometer"
                     android:importantForAutofill="no"
                     android:inputType="number"
@@ -257,7 +258,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
+                android:layout_height="@dimen/input_height"
                 android:layout_marginTop="@dimen/spacing_8"
                 android:background="@drawable/bg_input_field_faint">
 
@@ -274,9 +275,10 @@
                     android:id="@+id/etStation"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/spacing_40"
+                    android:layout_marginStart="@dimen/spacing_48"
                     android:layout_marginEnd="@dimen/spacing_16"
                     android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
                     android:hint="@string/add_fuel_hint_station"
                     android:importantForAutofill="no"
                     android:inputType="text"

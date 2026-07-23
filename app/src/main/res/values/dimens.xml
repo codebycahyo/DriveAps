@@ -24,17 +24,20 @@
     <dimen name="radius_xs">8dp</dimen>
     <dimen name="radius_small">12dp</dimen>
     <dimen name="radius_medium">14dp</dimen>
-    <dimen name="radius_medium_16">16dp</dimen>
+    <!-- Shared "card" radius: soft-rounded 20dp for a modern, premium look (used by all card surfaces) -->
+    <dimen name="radius_medium_16">20dp</dimen>
     <dimen name="radius_large">24dp</dimen>
     <dimen name="radius_xlarge">32dp</dimen>
     <dimen name="radius_pill">9999dp</dimen>
     <dimen name="radius_card_default">16dp</dimen>
     <dimen name="radius_card_small">12dp</dimen>
+    <dimen name="radius_button">16dp</dimen>
 
     <!-- Component sizes -->
     <dimen name="icon_button_min_size">48dp</dimen>
     <dimen name="logo_size">64dp</dimen>
     <dimen name="input_height">56dp</dimen>
+    <dimen name="appbar_height">64dp</dimen>
     <dimen name="input_height_compact">50dp</dimen>
     <dimen name="button_height">56dp</dimen>
     <dimen name="button_height_small">48dp</dimen>
@@ -65,6 +68,8 @@
 
     <!-- Elevation -->
     <dimen name="elevation_none">0dp</dimen>
+    <!-- Gentle resting lift for content cards (soft shadow) -->
+    <dimen name="elevation_soft">2dp</dimen>
     <dimen name="elevation_card">4dp</dimen>
     <dimen name="elevation_dock">10dp</dimen>
 </resources>

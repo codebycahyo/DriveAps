@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.DriveTrack" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary -->
         <item name="colorPrimary">@color/brand_ink</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/surface_highlight</item>
+        <item name="colorOnPrimaryContainer">@color/brand_link</item>
+        <!-- Secondary -->
         <item name="colorSecondary">@color/brand_blue</item>
         <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondaryContainer">@color/surface_indigo_light</item>
+        <item name="colorOnSecondaryContainer">@color/brand_link</item>
+        <!-- Tertiary -->
+        <item name="colorTertiary">@color/status_success</item>
+        <item name="colorOnTertiary">@color/color_cta_on_primary</item>
+        <item name="colorTertiaryContainer">@color/surface_teal_light</item>
+        <item name="colorOnTertiaryContainer">@color/status_teal_text</item>
+        <!-- Backgrounds & surfaces -->
+        <item name="android:colorBackground">@color/window_background</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="colorOnBackground">@color/text_primary</item>
         <item name="colorSurface">@color/surface_white</item>
         <item name="colorOnSurface">@color/text_primary</item>
+        <!-- In dark, card/background separation comes from the explicit surface
+             ladder (window_background vs surface_white in values-night/colors.xml). -->
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
         <item name="colorOnSurfaceVariant">@color/text_secondary</item>
+        <!-- Outline / error -->
         <item name="colorOutline">@color/border_default</item>
         <item name="colorError">@color/status_error</item>
+        <item name="colorOnError">@color/color_cta_on_primary</item>
+        <item name="colorErrorContainer">@color/status_error_container</item>
+        <item name="colorOnErrorContainer">@color/status_error_strong</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.DriveTrack.Dialog</item>
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.DriveTrack.BottomSheet</item>
+        <item name="android:dialogCornerRadius">@dimen/radius_xlarge</item>
         <item name="android:statusBarColor">@color/surface_white</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:navigationBarColor">@color/surface_white</item>

@@ -8,208 +8,225 @@
     android:clipChildren="false"
     tools:context=".ui.onboarding.OnboardingScanFragment">
 
-    <!-- Atmospheric pastel blobs (depth layer); see fragment_onboarding_welcome.xml for the
-         same soft-blur approximation approach. -->
+    <!-- Atmospheric soft blobs -->
     <View
-        android:id="@+id/blobBlue"
-        android:layout_width="384dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="-39dp"
-        android:layout_marginTop="-88dp"
-        android:alpha="0.7"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="-64dp"
+        android:layout_marginTop="-72dp"
+        android:alpha="0.6"
         android:background="@drawable/shape_oval_solid"
         android:backgroundTint="@color/glass_blob_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/blobViolet"
-        android:layout_width="384dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="@dimen/spacing_48"
-        android:layout_marginTop="177dp"
-        android:alpha="0.7"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginEnd="-56dp"
+        android:layout_marginTop="120dp"
+        android:alpha="0.5"
         android:background="@drawable/shape_oval_solid"
         android:backgroundTint="@color/glass_blob_violet"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/blobTeal"
-        android:layout_width="384dp"
-        android:layout_height="384dp"
-        android:layout_marginStart="@dimen/spacing_72"
-        android:layout_marginTop="588dp"
-        android:alpha="0.7"
-        android:background="@drawable/shape_oval_solid"
-        android:backgroundTint="@color/glass_blob_teal"
-        app:layout_constraintStart_toStartOf="parent"
+    <!-- Skip -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/skipButton"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_16"
+        android:layout_marginEnd="@dimen/spacing_8"
+        android:paddingHorizontal="@dimen/spacing_16"
+        android:text="@string/onboarding_skip"
+        android:textAllCaps="false"
+        android:textColor="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_20"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/bottomDock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/skipButton">
 
-        <!-- Illustration section -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="572">
-
-            <FrameLayout
-                android:layout_width="256dp"
-                android:layout_height="256dp"
-                android:layout_gravity="center"
-                tools:ignore="UselessParent">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bg_glass_circle"
-                    android:elevation="@dimen/elevation_card" />
-
-                <!-- Receipt card mock -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="109dp"
-                    android:layout_height="137dp"
-                    android:layout_marginStart="@dimen/spacing_72"
-                    android:layout_marginTop="@dimen/spacing_72"
-                    app:cardBackgroundColor="@color/surface_white"
-                    app:cardCornerRadius="@dimen/radius_small"
-                    app:cardElevation="@dimen/elevation_card"
-                    app:cardUseCompatPadding="false">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_receipt_card"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_8">
-
-                        <View
-                            android:layout_width="78dp"
-                            android:layout_height="16dp"
-                            android:layout_marginBottom="@dimen/spacing_8"
-                            android:background="@drawable/shape_placeholder_line" />
-
-                        <View
-                            android:layout_width="59dp"
-                            android:layout_height="14dp"
-                            android:layout_marginBottom="@dimen/spacing_16"
-                            android:background="@drawable/shape_placeholder_line" />
-
-                        <FrameLayout
-                            android:layout_width="85dp"
-                            android:layout_height="78dp"
-                            android:background="@drawable/bg_highlight_box">
-
-                            <ImageView
-                                android:layout_width="@dimen/icon_size_large"
-                                android:layout_height="@dimen/icon_size_large"
-                                android:layout_gravity="center"
-                                android:contentDescription="@string/cd_icon_receipt_amount"
-                                android:src="@drawable/ic_banknote" />
-                        </FrameLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Floating camera lens -->
-                <FrameLayout
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="@dimen/spacing_128"
-                    android:layout_marginTop="152dp"
-                    android:background="@drawable/bg_camera_lens"
-                    android:elevation="@dimen/elevation_card">
-
-                    <ImageView
-                        android:layout_width="@dimen/icon_size_medium"
-                        android:layout_height="@dimen/icon_size_medium"
-                        android:layout_gravity="center"
-                        android:contentDescription="@string/cd_icon_camera"
-                        android:src="@drawable/ic_camera" />
-                </FrameLayout>
-            </FrameLayout>
-        </FrameLayout>
-
-        <!-- Text content section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="192"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/spacing_32">
+            android:paddingHorizontal="@dimen/spacing_24"
+            android:paddingTop="@dimen/spacing_16"
+            android:paddingBottom="@dimen/spacing_24">
 
+            <!-- Floating composed illustration -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:clipChildren="false">
+
+                <View
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_onboarding_hero_glow" />
+
+                <FrameLayout
+                    android:id="@+id/heroImage"
+                    android:layout_width="256dp"
+                    android:layout_height="256dp"
+                    android:layout_gravity="center"
+                    android:clipChildren="false">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_glass_circle"
+                        android:elevation="@dimen/elevation_card" />
+
+                    <!-- Receipt card mock -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="112dp"
+                        android:layout_height="140dp"
+                        android:layout_marginStart="@dimen/spacing_72"
+                        android:layout_marginTop="@dimen/spacing_64"
+                        android:elevation="@dimen/elevation_card"
+                        app:cardBackgroundColor="@color/surface_white"
+                        app:cardCornerRadius="@dimen/radius_small"
+                        app:cardElevation="@dimen/elevation_card"
+                        app:cardUseCompatPadding="false">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_receipt_card"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_12">
+
+                            <View
+                                android:layout_width="78dp"
+                                android:layout_height="14dp"
+                                android:layout_marginBottom="@dimen/spacing_8"
+                                android:background="@drawable/shape_placeholder_line" />
+
+                            <View
+                                android:layout_width="56dp"
+                                android:layout_height="12dp"
+                                android:layout_marginBottom="@dimen/spacing_16"
+                                android:background="@drawable/shape_placeholder_line" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="72dp"
+                                android:background="@drawable/bg_highlight_box">
+
+                                <ImageView
+                                    android:layout_width="@dimen/icon_size_large"
+                                    android:layout_height="@dimen/icon_size_large"
+                                    android:layout_gravity="center"
+                                    android:contentDescription="@string/cd_icon_receipt_amount"
+                                    android:src="@drawable/ic_banknote"
+                                    app:tint="@color/text_primary" />
+                            </FrameLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Floating camera lens -->
+                    <FrameLayout
+                        android:layout_width="68dp"
+                        android:layout_height="68dp"
+                        android:layout_marginStart="@dimen/spacing_128"
+                        android:layout_marginTop="150dp"
+                        android:background="@drawable/bg_camera_lens"
+                        android:elevation="@dimen/elevation_dock">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_icon_camera"
+                            android:src="@drawable/ic_camera" />
+                    </FrameLayout>
+                </FrameLayout>
+            </FrameLayout>
+
+            <!-- Heading -->
             <com.example.kendaraanbp1.ui.widget.DTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_8"
+                android:layout_marginTop="@dimen/spacing_32"
                 android:gravity="center"
-                android:paddingHorizontal="25dp"
+                android:maxLines="2"
                 android:text="@string/onboarding_scan_headline"
                 android:textAppearance="@style/TextAppearance.DriveTrack.Display"
                 app:lineHeightSp="40" />
 
+            <!-- Subtitle -->
             <com.example.kendaraanbp1.ui.widget.DTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/spacing_20"
                 android:text="@string/onboarding_scan_body"
                 android:textAppearance="@style/TextAppearance.DriveTrack.BodyLarge"
                 app:lineHeightSp="24" />
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- Bottom controls -->
+    <!-- Bottom control bar -->
+    <LinearLayout
+        android:id="@+id/bottomDock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_24"
+        android:paddingTop="@dimen/spacing_16"
+        android:paddingBottom="@dimen/spacing_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="120"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/spacing_32">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_24"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_24"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            <View
+                android:layout_width="@dimen/dot_size"
+                android:layout_height="@dimen/dot_size"
+                android:background="@drawable/shape_dot_inactive" />
 
-                <View
-                    android:layout_width="@dimen/dot_size"
-                    android:layout_height="@dimen/dot_size"
-                    android:background="@drawable/shape_dot_inactive" />
+            <View
+                android:layout_width="@dimen/dot_size_active"
+                android:layout_height="@dimen/dot_size"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_dot_active" />
 
-                <View
-                    android:layout_width="@dimen/dot_size_active"
-                    android:layout_height="@dimen/dot_size"
-                    android:layout_marginStart="@dimen/spacing_8"
-                    android:background="@drawable/shape_dot_active" />
-
-                <View
-                    android:layout_width="@dimen/dot_size"
-                    android:layout_height="@dimen/dot_size"
-                    android:layout_marginStart="@dimen/spacing_8"
-                    android:background="@drawable/shape_dot_inactive" />
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/nextButton"
-                style="@style/Widget.DriveTrack.Button.GradientCta"
-                android:layout_width="300dp"
-                android:layout_height="@dimen/button_height"
-                android:text="@string/onboarding_cta_next"
-                app:cornerRadius="@dimen/radius_pill"
-                app:icon="@drawable/ic_arrow_forward" />
+            <View
+                android:layout_width="@dimen/dot_size"
+                android:layout_height="@dimen/dot_size"
+                android:layout_marginStart="@dimen/spacing_8"
+                android:background="@drawable/shape_dot_inactive" />
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextButton"
+            style="@style/Widget.DriveTrack.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/onboarding_cta_next"
+            app:cornerRadius="@dimen/radius_button"
+            app:icon="@drawable/ic_arrow_forward" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
