@@ -114,7 +114,7 @@
     <color name="avatar_placeholder_bg">#3D6BF5</color>
 
     <!-- Glassmorphism / frosted -->
-    <color name="glass_dock_bg">#D9FFFFFF</color>
+    <color name="glass_dock_bg">#F2FFFFFF</color>
     <color name="glass_pill_bg">#CCFAF8FF</color>
     <color name="glass_pill_stroke">#1A191B23</color>
     <color name="glass_highlight">#66FFFFFF</color>

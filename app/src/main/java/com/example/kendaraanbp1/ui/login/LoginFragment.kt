@@ -57,6 +57,17 @@ class LoginFragment : Fragment() {
         }
 
         binding.forgotPassword.setOnClickListener { showForgotPasswordDialog() }
+
+        // Login sosial butuh internet; aplikasi ini offline → beri info yang jelas.
+        val socialUnavailable = View.OnClickListener {
+            Snackbar.make(
+                binding.root,
+                "Login dengan Google/Facebook belum tersedia. Silakan daftar akun.",
+                Snackbar.LENGTH_SHORT
+            ).show()
+        }
+        binding.googleButton.setOnClickListener(socialUnavailable)
+        binding.facebookButton.setOnClickListener(socialUnavailable)
     }
 
     private fun attemptLogin() {

@@ -58,6 +58,7 @@ class EditVehicleFragment : Fragment() {
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
+        binding.cancelButton.setOnClickListener { findNavController().popBackStack() }
 
         setUpTypeSelectors()
         

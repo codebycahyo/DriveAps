@@ -65,6 +65,13 @@ class ProfileFragment : Fragment() {
         binding.bottomNavInclude.setupNavigation(findNavController())
 
         setupRows()
+
+        // Ikon header di Profil hanya dekoratif → beri feedback, jangan diam.
+        val comingSoon = View.OnClickListener {
+            Snackbar.make(binding.root, "Fitur segera hadir", Snackbar.LENGTH_SHORT).show()
+        }
+        binding.menuButton.setOnClickListener(comingSoon)
+        binding.settingsButton.setOnClickListener(comingSoon)
         
         binding.rowBackupRestore.root.setOnClickListener {
             showBackupRestoreDialog()

@@ -13,4 +13,12 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+
+# Exclude non-app files (docx, pdf, temp, scratch, assets)
+*.docx
+*.pdf
+*.tmp
+*.~lock.*
+UI AI/
+scratch/
+.~*

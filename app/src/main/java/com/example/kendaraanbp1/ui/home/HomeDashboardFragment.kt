@@ -65,6 +65,18 @@ class HomeDashboardFragment : Fragment() {
         binding.bottomNavInclude.setActiveTab(BottomNavTab.HOME)
         binding.bottomNavInclude.setupNavigation(findNavController())
 
+        // "Lihat Semua" aktivitas → buka detail kendaraan (menampilkan seluruh aktivitas).
+        binding.seeAllActivity.setOnClickListener {
+            findNavController().navigate(R.id.action_homeDashboardFragment_to_vehicleDetailFragment)
+        }
+        // Ikon header: beri feedback agar tidak menjadi tombol diam.
+        binding.menuButton.setOnClickListener {
+            Snackbar.make(binding.root, "Fitur segera hadir", Snackbar.LENGTH_SHORT).show()
+        }
+        binding.notificationButton.setOnClickListener {
+            Snackbar.make(binding.root, "Pengingat tampil di bagian \"Pengingat Mendatang\" di beranda.", Snackbar.LENGTH_SHORT).show()
+        }
+
         setUpQuickActions()
         
         val activityAdapter = ActivityAdapter()

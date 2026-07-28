@@ -103,7 +103,12 @@
     <color name="reminder_standard_subtitle">#B7BAC9</color>
 
     <!-- Glassmorphism / frosted -->
-    <color name="glass_dock_bg">#CC15161C</color>
+    <color name="glass_dock_bg">#F21C1F29</color>
+
+    <!-- Dark-mode hero/CTA gradient: graphite yang lebih pekat (bukan abu terang #6B7280
+         yang terlihat washed di atas latar gelap). -->
+    <color name="gradient_cta_start">#232838</color>
+    <color name="gradient_cta_end">#3B4250</color>
     <color name="glass_pill_bg">#33FFFFFF</color>
     <color name="glass_pill_stroke">#1AFFFFFF</color>
     <color name="glass_highlight">#1AFFFFFF</color>

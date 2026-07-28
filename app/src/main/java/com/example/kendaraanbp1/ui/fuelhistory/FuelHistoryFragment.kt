@@ -70,6 +70,9 @@ class FuelHistoryFragment : Fragment() {
         menuButton.setOnClickListener {
             findNavController().popBackStack()
         }
+        binding.topAppBar.findViewById<android.view.View>(R.id.notificationButton)?.setOnClickListener {
+            Snackbar.make(binding.root, "Pengingat tampil di beranda.", Snackbar.LENGTH_SHORT).show()
+        }
 
         binding.addFuelFab.setOnClickListener {
             AddFuelEntryFragment().show(childFragmentManager, AddFuelEntryFragment.TAG)
