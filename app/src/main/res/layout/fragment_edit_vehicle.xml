@@ -11,12 +11,14 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="0dp"
-        android:layout_height="64dp"
+        android:layout_height="wrap_content"
         android:background="@color/surface_header"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/spacing_8"
         android:paddingEnd="@dimen/spacing_16"
+        android:paddingTop="@dimen/spacing_8"
+        android:paddingBottom="@dimen/spacing_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -62,6 +64,7 @@
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/formScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -328,11 +331,13 @@
                             android:background="@drawable/bg_input_field_plain">
 
                             <com.example.kendaraanbp1.ui.widget.DTextView
+                                android:id="@+id/yearValue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical|start"
                                 android:layout_marginStart="@dimen/spacing_16"
                                 android:text="@string/add_vehicle_hint_year"
+                                android:textColor="@color/text_placeholder"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.Body16"
                                 app:lineHeightSp="24" />
 

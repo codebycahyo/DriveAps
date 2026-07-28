@@ -260,11 +260,16 @@
                                 android:textColorHint="@color/text_placeholder" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <!-- Terms checkbox -->
+                        <!-- Terms checkbox (seluruh baris bisa ditekan untuk mencentang) -->
                         <LinearLayout
+                            android:id="@+id/termsRow"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_16"
+                            android:layout_marginTop="@dimen/spacing_12"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingVertical="@dimen/spacing_8"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -272,17 +277,18 @@
                                 android:id="@+id/termsCheckbox"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:background="@null"
-                                android:button="@drawable/selector_checkbox"
+                                android:button="@null"
+                                android:background="@drawable/selector_checkbox"
                                 android:contentDescription="@string/cd_checkbox_terms" />
 
                             <com.example.kendaraanbp1.ui.widget.DTextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:layout_marginStart="@dimen/spacing_12"
                                 android:text="@string/register_terms"
                                 android:textAppearance="@style/TextAppearance.DriveTrack.Body"
-                                app:lineHeightSp="20" />
+                                app:lineHeightSp="22" />
                         </LinearLayout>
 
                         <com.google.android.material.button.MaterialButton
@@ -365,7 +371,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/registerCard"
-                app:lineHeightSp="20" />
+                app:lineHeightSp="22" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

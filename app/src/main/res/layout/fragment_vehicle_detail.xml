@@ -212,13 +212,15 @@
     <LinearLayout
         android:id="@+id/topAppBar"
         android:layout_width="0dp"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:background="@color/icon_bg_frosted"
         android:elevation="@dimen/elevation_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/spacing_12"
         android:paddingEnd="@dimen/spacing_12"
+        android:paddingTop="@dimen/spacing_8"
+        android:paddingBottom="@dimen/spacing_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

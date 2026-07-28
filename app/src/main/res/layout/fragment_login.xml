@@ -273,14 +273,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login_footer_prefix"
                 android:textAppearance="@style/TextAppearance.DriveTrack.Body"
-                app:lineHeightSp="20" />
+                app:lineHeightSp="22" />
 
             <com.example.kendaraanbp1.ui.widget.DTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_4"
                 android:text="@string/login_footer_link"
                 android:textAppearance="@style/TextAppearance.DriveTrack.LinkMedium"
-                app:lineHeightSp="20" />
+                app:lineHeightSp="22" />
         </LinearLayout>
 
         <!-- Trust banner -->

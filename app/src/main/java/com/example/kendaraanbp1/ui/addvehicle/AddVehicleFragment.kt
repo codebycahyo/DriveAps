@@ -14,6 +14,8 @@ import com.example.kendaraanbp1.R
 import com.example.kendaraanbp1.databinding.FragmentAddVehicleBinding
 import com.example.kendaraanbp1.ui.common.viewmodel.SharedVehicleViewModel
 import com.example.kendaraanbp1.ui.common.viewmodel.ViewModelFactory
+import com.example.kendaraanbp1.ui.util.applyImeBottomPadding
+import com.example.kendaraanbp1.ui.util.applyTopSystemBarPadding
 
 class AddVehicleFragment : Fragment() {
 
@@ -23,6 +25,7 @@ class AddVehicleFragment : Fragment() {
     private enum class VehicleType { CAR, MOTORCYCLE }
 
     private var selectedType = VehicleType.CAR
+    private var selectedYear: Int? = null
 
     private val sharedViewModel: SharedVehicleViewModel by activityViewModels {
         ViewModelFactory(requireContext().applicationContext)
@@ -44,29 +47,37 @@ class AddVehicleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Edge-to-edge: dorong header ke bawah status bar agar tombol back tidak tertutup.
+        binding.header.applyTopSystemBarPadding()
+        // Sisakan ruang di atas keyboard agar field tidak tertutup saat mengetik.
+        binding.formScroll.applyImeBottomPadding()
+
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
         binding.cancelButton.setOnClickListener { findNavController().popBackStack() }
 
         binding.vehicleTypeCar.setOnClickListener { selectVehicleType(VehicleType.CAR) }
         binding.vehicleTypeMotorcycle.setOnClickListener { selectVehicleType(VehicleType.MOTORCYCLE) }
 
+        binding.yearSelector.setOnClickListener { showYearPicker() }
+
         binding.nextButton.setOnClickListener {
             val brand = binding.etBrand.text.toString().trim()
             val model = binding.etModel.text.toString().trim()
             val plate = binding.etPlate.text.toString().trim()
             val type = if (selectedType == VehicleType.CAR) "Mobil" else "Motor"
-            
-            if (brand.isEmpty() || model.isEmpty() || plate.isEmpty()) {
-                Toast.makeText(context, "Harap lengkapi semua data", Toast.LENGTH_SHORT).show()
+            val year = selectedYear
+
+            if (brand.isEmpty() || model.isEmpty() || plate.isEmpty() || year == null) {
+                Toast.makeText(context, "Harap lengkapi semua data (termasuk tahun)", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
+
             addVehicleViewModel.saveVehicle(
                 type = type,
                 brand = brand,
                 model = model,
                 plateNumber = plate,
-                year = 2024, // Assuming default or static for now since no UI field was requested specifically
+                year = year,
                 onSuccess = { id ->
                     sharedViewModel.selectVehicle(id)
                     findNavController().popBackStack()
@@ -76,6 +87,22 @@ class AddVehicleFragment : Fragment() {
                 }
             )
         }
+    }
+
+    private fun showYearPicker() {
+        val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+        val years = (currentYear downTo currentYear - 40).map { it.toString() }.toTypedArray()
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Pilih Tahun")
+            .setItems(years) { _, which ->
+                selectedYear = years[which].toInt()
+                binding.yearValue.text = years[which]
+                binding.yearValue.setTextColor(
+                    androidx.core.content.ContextCompat.getColor(requireContext(), R.color.text_primary)
+                )
+            }
+            .setNegativeButton("Batal", null)
+            .show()
     }
 
     private fun selectVehicleType(type: VehicleType) {

@@ -16,6 +16,7 @@ import com.example.kendaraanbp1.util.ReceiptParser
 import androidx.core.content.ContextCompat
 import com.example.kendaraanbp1.R
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doAfterTextChanged
 import android.app.Activity
 import android.content.Intent
 
@@ -78,6 +79,10 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
             binding.saveButton.text = "Simpan Perubahan"
         }
 
+        // Total Biaya dihitung otomatis: liter x harga per liter.
+        binding.etLiter.doAfterTextChanged { recalcTotal() }
+        binding.etPrice.doAfterTextChanged { recalcTotal() }
+
         binding.saveButton.setOnClickListener {
             val litersStr = binding.etLiter.text.toString()
             val priceStr = binding.etPrice.text.toString()
@@ -88,7 +93,8 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
             val liters = litersStr.toDoubleOrNull() ?: 0.0
             val price = priceStr.toDoubleOrNull() ?: 0.0
             val odometer = odometerStr.toIntOrNull() ?: 0
-            val totalCost = totalCostStr.toDoubleOrNull() ?: 0.0
+            // Pakai total yang diketik manual bila ada, jika tidak hitung dari liter x harga.
+            val totalCost = totalCostStr.toDoubleOrNull()?.takeIf { it > 0.0 } ?: (liters * price)
             
             if (totalCost == 0.0 && (liters == 0.0 || price == 0.0)) {
                 Toast.makeText(context, "Harap masukkan Total Biaya atau (Liter dan Harga)", Toast.LENGTH_SHORT).show()
@@ -132,6 +138,15 @@ class AddFuelEntryFragment : ExpandedBottomSheetDialogFragment() {
                     }
                 )
             }
+        }
+    }
+
+    /** Hitung Total Biaya = liter x harga per liter, hanya bila keduanya valid > 0. */
+    private fun recalcTotal() {
+        val liters = binding.etLiter.text.toString().toDoubleOrNull()
+        val price = binding.etPrice.text.toString().toDoubleOrNull()
+        if (liters != null && price != null && liters > 0.0 && price > 0.0) {
+            binding.totalCostValue.setText((liters * price).toLong().toString())
         }
     }
 

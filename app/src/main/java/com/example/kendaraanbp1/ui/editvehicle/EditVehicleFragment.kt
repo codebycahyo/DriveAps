@@ -17,6 +17,8 @@ import com.example.kendaraanbp1.R
 import com.example.kendaraanbp1.databinding.FragmentEditVehicleBinding
 import com.example.kendaraanbp1.ui.common.viewmodel.SharedVehicleViewModel
 import com.example.kendaraanbp1.ui.common.viewmodel.ViewModelFactory
+import com.example.kendaraanbp1.ui.util.applyImeBottomPadding
+import com.example.kendaraanbp1.ui.util.applyTopSystemBarPadding
 import kotlinx.coroutines.launch
 
 class EditVehicleFragment : Fragment() {
@@ -34,6 +36,7 @@ class EditVehicleFragment : Fragment() {
 
     private enum class VehicleType { CAR, MOTORCYCLE }
     private var selectedType = VehicleType.CAR
+    private var selectedYear: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +49,11 @@ class EditVehicleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Edge-to-edge: dorong header ke bawah status bar agar tombol back tidak tertutup.
+        binding.header.applyTopSystemBarPadding()
+        // Sisakan ruang di atas keyboard agar field tidak tertutup saat mengetik.
+        binding.formScroll.applyImeBottomPadding()
 
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
@@ -69,6 +77,12 @@ class EditVehicleFragment : Fragment() {
                         binding.etBrand.setText(it.brand)
                         binding.etModel.setText(it.model)
                         binding.etPlate.setText(it.plateNumber)
+                        // Prefill tahun (bisa diubah lewat pemilih tahun)
+                        selectedYear = it.year
+                        binding.yearValue.text = it.year.toString()
+                        binding.yearValue.setTextColor(
+                            androidx.core.content.ContextCompat.getColor(requireContext(), R.color.text_primary)
+                        )
                         // Selection logic
                         if (it.vehicleType == "Motor") {
                             selectType(VehicleType.MOTORCYCLE)
@@ -80,23 +94,26 @@ class EditVehicleFragment : Fragment() {
             }
         }
 
+        binding.yearSelector.setOnClickListener { showYearPicker() }
+
         binding.nextButton.setOnClickListener {
             val brand = binding.etBrand.text.toString().trim()
             val model = binding.etModel.text.toString().trim()
             val plate = binding.etPlate.text.toString().trim()
             val type = if (selectedType == VehicleType.CAR) "Mobil" else "Motor"
-            
-            if (brand.isEmpty() || model.isEmpty() || plate.isEmpty()) {
-                Toast.makeText(context, "Harap lengkapi semua data", Toast.LENGTH_SHORT).show()
+            val year = selectedYear ?: editVehicleViewModel.vehicle.value?.year
+
+            if (brand.isEmpty() || model.isEmpty() || plate.isEmpty() || year == null) {
+                Toast.makeText(context, "Harap lengkapi semua data (termasuk tahun)", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
+
             editVehicleViewModel.updateVehicle(
                 type = type,
                 brand = brand,
                 model = model,
                 plateNumber = plate,
-                year = editVehicleViewModel.vehicle.value?.year ?: 2024,
+                year = year,
                 onSuccess = {
                     Toast.makeText(context, "Kendaraan berhasil diperbarui", Toast.LENGTH_SHORT).show()
                     findNavController().popBackStack()
@@ -128,6 +145,22 @@ class EditVehicleFragment : Fragment() {
                 .setNegativeButton("Batal", null)
                 .show()
         }
+    }
+
+    private fun showYearPicker() {
+        val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+        val years = (currentYear downTo currentYear - 40).map { it.toString() }.toTypedArray()
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Pilih Tahun")
+            .setItems(years) { _, which ->
+                selectedYear = years[which].toInt()
+                binding.yearValue.text = years[which]
+                binding.yearValue.setTextColor(
+                    androidx.core.content.ContextCompat.getColor(requireContext(), R.color.text_primary)
+                )
+            }
+            .setNegativeButton("Batal", null)
+            .show()
     }
 
     private fun setUpTypeSelectors() {

@@ -28,6 +28,9 @@ import com.example.kendaraanbp1.ui.util.VerticalSpaceItemDecoration
 import com.example.kendaraanbp1.ui.util.bind
 import com.example.kendaraanbp1.ui.util.setEmptyState
 import com.example.kendaraanbp1.ui.util.setupNavigation
+import com.example.kendaraanbp1.ui.util.setActiveTab
+import com.example.kendaraanbp1.ui.util.BottomNavTab
+import com.example.kendaraanbp1.ui.util.applyBottomSystemBarMargin
 import com.example.kendaraanbp1.ui.util.applyTopSystemBarPadding
 import com.example.kendaraanbp1.ui.adddocument.AddDocumentFragment
 
@@ -61,6 +64,9 @@ class VehicleDocumentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.header.applyTopSystemBarPadding()
+        binding.bottomNavInclude.root.applyBottomSystemBarMargin()
+        binding.bottomNavInclude.setActiveTab(BottomNavTab.VEHICLES)
+        binding.bottomNavInclude.setupNavigation(findNavController())
         binding.backButton.setOnClickListener { findNavController().popBackStack() }
         binding.searchButton.visibility = View.GONE // Hidden for MVP release
         binding.addDocumentFab.setOnClickListener {

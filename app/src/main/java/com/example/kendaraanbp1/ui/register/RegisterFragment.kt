@@ -13,6 +13,7 @@ import com.example.kendaraanbp1.data.repository.AuthField
 import com.example.kendaraanbp1.data.repository.AuthOutcome
 import com.example.kendaraanbp1.databinding.FragmentRegisterBinding
 import com.example.kendaraanbp1.ui.common.viewmodel.ViewModelFactory
+import com.example.kendaraanbp1.ui.util.applyTopBarAndImeInsets
 import com.example.kendaraanbp1.util.SessionManager
 import com.example.kendaraanbp1.util.Validators
 import com.google.android.material.snackbar.Snackbar
@@ -41,10 +42,16 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Edge-to-edge: konten mulai di bawah status bar & menyisakan ruang di atas keyboard.
+        binding.root.applyTopBarAndImeInsets()
+
         binding.nameInputLayout.editText?.doAfterTextChanged { clearError(binding.nameInputLayout) }
         binding.emailInputLayout.editText?.doAfterTextChanged { clearError(binding.emailInputLayout) }
         binding.passwordInputLayout.editText?.doAfterTextChanged { clearError(binding.passwordInputLayout) }
         binding.confirmPasswordInputLayout.editText?.doAfterTextChanged { clearError(binding.confirmPasswordInputLayout) }
+
+        // Ketuk di mana saja pada baris syarat untuk mencentang/hapus centang.
+        binding.termsRow.setOnClickListener { binding.termsCheckbox.toggle() }
 
         binding.registerButton.setOnClickListener { attemptRegister() }
 

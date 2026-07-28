@@ -13,6 +13,7 @@ import com.example.kendaraanbp1.data.repository.AuthField
 import com.example.kendaraanbp1.data.repository.AuthOutcome
 import com.example.kendaraanbp1.databinding.FragmentLoginBinding
 import com.example.kendaraanbp1.ui.common.viewmodel.ViewModelFactory
+import com.example.kendaraanbp1.ui.util.applyTopBarAndImeInsets
 import com.example.kendaraanbp1.util.SessionManager
 import com.example.kendaraanbp1.util.Validators
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -41,6 +42,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Edge-to-edge: konten mulai di bawah status bar & menyisakan ruang di atas keyboard.
+        binding.root.applyTopBarAndImeInsets()
 
         // Clear the error highlight as soon as the user edits a field.
         binding.emailInputLayout.editText?.doAfterTextChanged { clearError(binding.emailInputLayout) }

@@ -44,14 +44,12 @@ fun LayoutBottomNavBinding.setActiveTab(tab: BottomNavTab) {
 fun LayoutBottomNavBinding.setupNavigation(navController: NavController) {
     val navOptions = NavOptions.Builder()
         .setLaunchSingleTop(true)
-        .setRestoreState(true)
-        .setPopUpTo(R.id.homeDashboardFragment, inclusive = false, saveState = true)
+        .setPopUpTo(R.id.homeDashboardFragment, inclusive = false)
         .build()
 
     val homeNavOptions = NavOptions.Builder()
         .setLaunchSingleTop(true)
-        .setRestoreState(true)
-        .setPopUpTo(R.id.homeDashboardFragment, inclusive = false, saveState = true)
+        .setPopUpTo(R.id.homeDashboardFragment, inclusive = false)
         .build()
 
     root.findViewById<android.view.View>(R.id.navHome).setOnClickListener {

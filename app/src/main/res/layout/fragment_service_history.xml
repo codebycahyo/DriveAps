@@ -10,13 +10,15 @@
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
         android:background="@color/glass_dock_bg"
         android:elevation="@dimen/elevation_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/spacing_12"
         android:paddingEnd="@dimen/spacing_12"
+        android:paddingTop="@dimen/spacing_8"
+        android:paddingBottom="@dimen/spacing_8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -53,8 +55,8 @@
             android:background="?attr/selectableItemBackgroundBorderless">
 
             <ImageView
-                android:layout_width="@dimen/icon_size_medium"
-                android:layout_height="@dimen/icon_size_small"
+                android:layout_width="@dimen/icon_size_large"
+                android:layout_height="@dimen/icon_size_large"
                 android:layout_gravity="center"
                 android:contentDescription="@string/cd_search"
                 android:src="@drawable/ic_search"
